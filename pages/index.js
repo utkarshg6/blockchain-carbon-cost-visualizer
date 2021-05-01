@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../components/layout';
 import Chart from "react-google-charts";
 
-import { Dropdown, Input, Header, Grid, Checkbox } from 'semantic-ui-react';
+import { Dropdown, Input, Header, Grid, Checkbox, Card } from 'semantic-ui-react';
 
 const transactionOptions = [
     {
@@ -47,35 +47,6 @@ const energyOptions = [
 
 
 class ComponentIndex extends Component {
-
-    renderBarChart() {
-        return (
-            <Chart
-                width={'800px'}
-                height={'300px'}
-                chartType="BarChart"
-                loader={<div>Loading Chart</div>}
-                data={[
-                    ['Blockchain', 'Energy Consumption (TWH)'],
-                    ['Ethereum', 33],
-                    ['RSK', 3]
-                ]}
-                options={{
-                    title: "Blockchain's Energy Consumption",
-                    chartArea: { width: '50%' },
-                    hAxis: {
-                        title: 'Total Consumption',
-                        minValue: 0,
-                    },
-                    vAxis: {
-                        title: 'Blockchain',
-                    },
-                }}
-                // For tests
-                rootProps={{ 'data-testid': '1' }}
-            />
-        )
-    }
 
     renderEnergyPicker() {
         return (
@@ -177,11 +148,77 @@ class ComponentIndex extends Component {
         )
     }
 
+    renderBarChart() {
+        return (
+            <Chart
+                width={'500px'}
+                height={'250px'}
+                chartType="BarChart"
+                loader={<div>Loading Chart</div>}
+                data={[
+                    ['Blockchain', 'Energy Consumption (TWH)'],
+                    ['Ethereum', 33],
+                    ['RSK', 3]
+                ]}
+                options={{
+                    title: "Blockchain's Energy Consumption",
+                    chartArea: { width: '50%' },
+                    hAxis: {
+                        title: 'Total Consumption',
+                        minValue: 0,
+                    },
+                    vAxis: {
+                        title: 'Blockchain',
+                    },
+                }}
+                // For tests
+                rootProps={{ 'data-testid': '1' }}
+            />
+        )
+    }
+
+    renderSecondHalf() {
+        return (
+            <Grid columns={2}>
+                <Grid.Row>
+                    <Grid.Column>
+                        {this.renderBarChart()}
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>178 miles</Card.Header>
+                                <Card.Description>
+                                    driven by a passenger car
+                                </Card.Description>
+                            </Card.Content>
+                            {/* <Card.Content extra>
+                                Any Extra Information
+                            </Card.Content> */}
+                        </Card>
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>56 miles</Card.Header>
+                                <Card.Description>
+                                    driven by a passenger car
+                                </Card.Description>
+                            </Card.Content>
+                            {/* <Card.Content extra>
+                                Any Extra Information
+                            </Card.Content> */}
+                        </Card>
+
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        )
+    }
+
     render() {
         return (
             <Layout>
                 {this.renderFirstHalf()}
-                {this.renderBarChart()}
+                {this.renderSecondHalf()}
             </Layout>
         )
     }
