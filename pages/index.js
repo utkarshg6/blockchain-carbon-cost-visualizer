@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-
+import Layout from '../components/layout';
 class ComponentIndex extends Component {
 
     render() {
         return (
-            <h3>Hello, Welcome to Carbon Cost Visualizer!</h3>
+            <Layout>
+                <h3>Enjoy!</h3>
+            </Layout>
         )
     }
 }
