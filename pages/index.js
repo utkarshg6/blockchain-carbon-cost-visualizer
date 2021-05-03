@@ -156,12 +156,12 @@ class ComponentIndex extends Component {
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ['Blockchain', 'Energy Consumption (TWH)'],
-                    ['Ethereum', 33],
-                    ['RSK', 3]
+                    ['Blockchain', 'gCO2e/kWh'],
+                    ['Ethereum', 14930.00],
+                    ['RSK', 170.00]
                 ]}
                 options={{
-                    title: "Blockchain's Energy Consumption",
+                    title: "Blockchain's Carbon Cost",
                     chartArea: { width: '50%' },
                     hAxis: {
                         title: 'Total Consumption',
