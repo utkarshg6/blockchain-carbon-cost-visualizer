@@ -11,8 +11,8 @@ import Footer from './footer';
 const Layout = (props) => {
     return (
         <>
+            <Header />
             <Container>
-                <Header />
                 <Head>
                     <link
                         rel="stylesheet"

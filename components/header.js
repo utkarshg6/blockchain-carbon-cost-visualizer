@@ -8,7 +8,7 @@ import { Menu, Popup } from 'semantic-ui-react';
 class Header extends Component {
     render() {
         return (
-            <Menu style={{ marginTop: "30px" }}>
+            <Menu style={{ height: "60px" }}>
                 <Menu.Item>
                     Carbon Cost Explorer
                 </Menu.Item>
