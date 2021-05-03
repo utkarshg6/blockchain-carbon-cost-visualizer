@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Layout from '../components/layout';
 import Chart from "react-google-charts";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar, faTree } from '@fortawesome/free-solid-svg-icons';
+
 import { Dropdown, Input, Header, Grid, Checkbox, Card } from 'semantic-ui-react';
 
 const transactionOptions = [
@@ -207,29 +210,39 @@ class ComponentIndex extends Component {
                         {this.renderBarChart()}
                     </Grid.Column>
                     <Grid.Column>
-                        <Card>
-                            <Card.Content>
-                                <Card.Header>178 miles</Card.Header>
-                                <Card.Description>
-                                    driven by a passenger car
+                        <Card.Group>
+                            <Card>
+                                <FontAwesomeIcon
+                                    style={{ height: '100px', padding: '10px' }}
+                                    icon={faCar}
+                                />
+                                <Card.Content>
+                                    <Card.Header>
+                                        178 miles
+                                </Card.Header>
+                                    <Card.Description>
+                                        driven by a passenger car
                                 </Card.Description>
-                            </Card.Content>
-                            {/* <Card.Content extra>
+                                </Card.Content>
+                                {/* <Card.Content extra>
                                 Any Extra Information
                             </Card.Content> */}
-                        </Card>
-                        <Card>
-                            <Card.Content>
-                                <Card.Header>56 miles</Card.Header>
-                                <Card.Description>
-                                    driven by a passenger car
+                            </Card>
+                            <Card>
+                                <FontAwesomeIcon
+                                    style={{ height: '100px', padding: '10px' }}
+                                    icon={faTree}
+                                />
+                                <Card.Content>
+                                    <Card.Header>
+                                        23
+                                </Card.Header>
+                                    <Card.Description>
+                                        fully grown trees
                                 </Card.Description>
-                            </Card.Content>
-                            {/* <Card.Content extra>
-                                Any Extra Information
-                            </Card.Content> */}
-                        </Card>
-
+                                </Card.Content>
+                            </Card>
+                        </Card.Group>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
