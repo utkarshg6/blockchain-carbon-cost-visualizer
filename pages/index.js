@@ -6,19 +6,24 @@ import { Dropdown, Input, Header, Grid, Checkbox, Card } from 'semantic-ui-react
 
 const transactionOptions = [
     {
-        key: 'nft',
-        text: 'Non Fungible Token (NFT)',
-        value: 'nft'
+        key: 'custom',
+        text: 'Custom',
+        value: 'custom'
     },
     {
-        key: 'currency-transfer',
-        text: 'Currency Transfer',
-        value: 'currency-transfer'
+        key: 'nft-mint',
+        text: 'NFT Mint',
+        value: 'nft-mint'
     },
     {
-        key: 'erc-20',
-        text: 'ERC 20',
-        value: 'erc-20'
+        key: 'nft-deploy',
+        text: 'NFT Deploy',
+        value: 'nft-deploy'
+    },
+    {
+        key: 'nft-transfer',
+        text: 'NFT Transfer',
+        value: 'nft-transfer'
     },
 ]
 
@@ -47,6 +52,10 @@ const energyOptions = [
 
 
 class ComponentIndex extends Component {
+
+    state = {
+        txType: 'custom'
+    }
 
     renderEnergyPicker() {
         return (
@@ -123,14 +132,27 @@ class ComponentIndex extends Component {
                     selection
                     options={transactionOptions}
                     style={{ marginRight: '200px', width: '300px' }}
+                    value={this.state.txType}
+                    onChange={(e, { value }) => {
+                        console.log('Tx Type State Changed to', value)
+                        this.setState({ txType: value })
+                    }}
                 />
                 <Input
                     placeholder='Ethereum Transaction Hash...'
                     style={{ marginRight: '25px', width: '300px' }}
+                    onChange={(e, { value }) => {
+                        console.log('ETH Tx Value Entered', value)
+                        this.setState({ txType: 'custom' })
+                    }}
                 />
                 <Input
                     placeholder='RSK Transaction Hash...'
                     style={{ width: '300px' }}
+                    onChange={(e, { value }) => {
+                        console.log('RSK Tx Value Entered', value)
+                        this.setState({ txType: 'custom' })
+                    }}
                 />
                 <Header as='h3'>Energy Mix</Header>
                 <Grid columns={2}>
