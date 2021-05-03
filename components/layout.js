@@ -12,7 +12,7 @@ const Layout = (props) => {
     return (
         <>
             <Header />
-            <Container>
+            <Container style={{ width: '1300px' }}>
                 <Head>
                     <link
                         rel="stylesheet"

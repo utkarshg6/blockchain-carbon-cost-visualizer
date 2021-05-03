@@ -206,14 +206,14 @@ class ComponentIndex extends Component {
         return (
             <Grid columns={2}>
                 <Grid.Row>
-                    <Grid.Column>
+                    <Grid.Column width={6}>
                         {this.renderBarChart()}
                     </Grid.Column>
-                    <Grid.Column>
+                    <Grid.Column width={10}>
                         <Card.Group>
                             <Card>
                                 <FontAwesomeIcon
-                                    style={{ height: '100px', padding: '10px' }}
+                                    style={{ color: '#3366CC', height: '100px', padding: '10px' }}
                                     icon={faCar}
                                 />
                                 <Card.Content>
@@ -230,7 +230,7 @@ class ComponentIndex extends Component {
                             </Card>
                             <Card>
                                 <FontAwesomeIcon
-                                    style={{ height: '100px', padding: '10px' }}
+                                    style={{ color: '#109618', height: '100px', padding: '10px' }}
                                     icon={faTree}
                                 />
                                 <Card.Content>
