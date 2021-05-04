@@ -21,12 +21,13 @@ class AboutUs extends Component {
                 </Header>
 
                 <Card.Group style={{ margin: 'auto', width: '80%' }}>
-                    <Card>
+                    <Card
+                        href="https://www.linkedin.com/in/brendangraetz/"
+                        target="_blank"
+                    >
                         <Card.Content>
                             <Image
                                 style={{ height: '100px', width: '100px' }}
-                                href="https://www.linkedin.com/in/brendangraetz/"
-                                target="_blank"
                                 floated='right'
                                 size='large'
                                 src='/img/Brendan.png'
@@ -36,12 +37,13 @@ class AboutUs extends Component {
                         </Card.Content>
                     </Card>
 
-                    <Card>
+                    <Card
+                        href="https://www.linkedin.com/in/gaurangtorvekar/"
+                        target="_blank"
+                    >
                         <Card.Content>
                             <Image
                                 style={{ height: '100px', width: '100px' }}
-                                href="https://www.linkedin.com/in/gaurangtorvekar/"
-                                target="_blank"
                                 floated='right'
                                 size='large'
                                 src='/img/Gaurang.jfif'
@@ -51,12 +53,13 @@ class AboutUs extends Component {
                         </Card.Content>
                     </Card>
 
-                    <Card>
+                    <Card
+                        href="https://www.linkedin.com/in/vijaykrishnavanshi/"
+                        target="_blank"
+                    >
                         <Card.Content>
                             <Image
                                 style={{ height: '100px', width: '100px' }}
-                                href="https://www.linkedin.com/in/vijaykrishnavanshi/"
-                                target="_blank"
                                 floated='right'
                                 size='large'
                                 src='/img/Vijay.png'
@@ -66,12 +69,13 @@ class AboutUs extends Component {
                         </Card.Content>
                     </Card>
 
-                    <Card>
+                    <Card
+                        href="https://github.com/utkarshg6"
+                        target="_blank"
+                    >
                         <Card.Content>
                             <Image
                                 style={{ height: '100px', width: '100px' }}
-                                href="https://www.linkedin.com/in/utkarshg6/"
-                                target="_blank"
                                 floated='right'
                                 size='large'
                                 src='/img/Utkarsh.jfif'

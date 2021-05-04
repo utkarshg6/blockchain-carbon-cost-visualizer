@@ -5,7 +5,7 @@ import Chart from "react-google-charts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faTree } from '@fortawesome/free-solid-svg-icons';
 
-import { Dropdown, Input, Header, Grid, Checkbox, Card } from 'semantic-ui-react';
+import { Dropdown, Input, Header, Grid, Checkbox, Card, Label } from 'semantic-ui-react';
 
 const transactionOptions = [
     {
@@ -32,24 +32,29 @@ const transactionOptions = [
 
 const energyOptions = [
     {
-        key: 'coal',
-        text: 'Coal',
-        value: 'coal'
+        key: 'world-average',
+        text: 'World Average',
+        value: 'world-average'
     },
     {
-        key: 'hydro',
-        text: 'Hydro',
-        value: 'hydro'
+        key: 'eighty-twenty',
+        text: '80% Fossil Fuels, 20% Renewable Energy',
+        value: 'eighty-twenty'
     },
     {
-        key: 'solar',
-        text: 'Solar',
-        value: 'solar'
+        key: 'fifty-fifty',
+        text: '50% Fossil Fuels, 50% Renewable Energy',
+        value: 'fifty-fifty'
     },
     {
-        key: 'natural-gas',
-        text: 'Natural Gas',
-        value: 'natural-gas'
+        key: 'twenty-eighty',
+        text: '20% Fossil Fuels, 80% Renewable Energy',
+        value: 'twenty-eighty'
+    },
+    {
+        key: 'custom',
+        text: 'Custom',
+        value: 'custom'
     },
 ]
 
@@ -62,17 +67,24 @@ class ComponentIndex extends Component {
 
     renderEnergyPicker() {
         return (
-            <Grid columns={3}>
+            <Grid style={{ marginLeft: '15px' }}>
                 <Grid.Row>
-                    <Checkbox
-                        style={{ marginRight: '25px', padding: '10px' }}
-                    />
                     <Dropdown
-                        placeholder='Energy Type'
+                        placeholder='Energy Ratio'
                         selection
                         options={energyOptions}
-                        style={{ marginRight: '25px' }}
+                        defaultValue={'world-average'}
+                        style={{ width: '300px', marginRight: '25px' }}
                     />
+                </Grid.Row>
+                <Grid.Row>
+                    <Label
+                        style={{ width: '200px', textAlign: 'center', marginRight: '5px' }}
+                        color={'brown'}
+                        size={'big'}
+                    >
+                        Fossil Fuels
+                    </Label>
                     <Input
                         label={{ basic: true, content: '%' }}
                         labelPosition='right'
@@ -80,17 +92,14 @@ class ComponentIndex extends Component {
                         style={{ width: '75px' }}
                     />
                 </Grid.Row>
-
                 <Grid.Row>
-                    <Checkbox
-                        style={{ marginRight: '25px', padding: '10px' }}
-                    />
-                    <Dropdown
-                        placeholder='Energy Type'
-                        selection
-                        options={energyOptions}
-                        style={{ marginRight: '25px' }}
-                    />
+                    <Label
+                        style={{ width: '200px', textAlign: 'center', marginRight: '5px' }}
+                        color={'green'}
+                        size={'big'}
+                    >
+                        Renewable Sources
+                    </Label>
                     <Input
                         label={{ basic: true, content: '%' }}
                         labelPosition='right'
