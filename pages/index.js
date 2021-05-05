@@ -67,7 +67,10 @@ class ComponentIndex extends Component {
         rskHash: '',
         renewable: 28,
         fossils: 72,
-        disableEnergyMixInput: true
+        disableEnergyMixInput: true,
+
+        ethGCO2e: 14930.00,
+        rskGCO2e: 170.00
     }
 
     fetchGetHash() {
@@ -100,16 +103,20 @@ class ComponentIndex extends Component {
     fetchCarbonIntensity() {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+        myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
         var raw = JSON.stringify({
             "energyMix": [
                 {
                     "energyType": "Renewable",
-                    "percentage": 10
+                    "percentage": this.state.renewable
+                    // "percentage": 1
                 },
                 {
                     "energyType": "Fossil",
-                    "percentage": 90
+                    "percentage": this.state.fossils
+                    // "percentage": 99
                 }
             ],
             "ethHash": "0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710",
@@ -126,7 +133,13 @@ class ComponentIndex extends Component {
 
         fetch("https://once-hackathon-api.herokuapp.com/carbon-intesity", requestOptions)
             .then(response => response.json())
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result)
+                this.setState({
+                    ethGCO2e: result.ethGCO2e,
+                    rskGCO2e: result.rskGCO2e
+                })
+            })
             .catch(error => console.log('error', error));
 
     }
@@ -169,6 +182,7 @@ class ComponentIndex extends Component {
                                     break;
                                 // code block
                             }
+                            this.fetchCarbonIntensity()
                         }}
                     />
                 </Grid.Row>
@@ -303,8 +317,8 @@ class ComponentIndex extends Component {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Blockchain', 'gCO2e/kWh'],
-                    ['Ethereum', 14930.00],
-                    ['RSK', 170.00]
+                    ['Ethereum', this.state.ethGCO2e],
+                    ['RSK', this.state.rskGCO2e]
                 ]}
                 options={{
                     title: "Blockchain's Carbon Cost",
