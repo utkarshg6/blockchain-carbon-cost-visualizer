@@ -7,6 +7,7 @@ import { Menu, Popup, Dimmer } from 'semantic-ui-react';
 
 import WhatsThisSection from './whats-this-section';
 import AboutUs from './about-us-section';
+import DisclaimerPopup from './disclaimer-popup';
 
 class MenuHeader extends Component {
     state = {}
@@ -50,6 +51,7 @@ class MenuHeader extends Component {
                 >
                     <AboutUs />
                 </Dimmer>
+                <DisclaimerPopup />
             </>
         )
     }
