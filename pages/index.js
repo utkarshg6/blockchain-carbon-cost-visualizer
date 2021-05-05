@@ -187,9 +187,11 @@ class ComponentIndex extends Component {
                     />
                 </Grid.Row>
                 <Grid.Row>
+                    <div
+                        style={{ width: '20px', margin: '10px', backgroundColor: '#00B1A4', marginRight: '5px' }}
+                    ></div>
                     <Label
-                        style={{ width: '200px', textAlign: 'center', marginRight: '5px' }}
-                        color={'brown'}
+                        style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white' }}
                         size={'big'}
                     >
                         Fossil Fuels
@@ -208,9 +210,11 @@ class ComponentIndex extends Component {
                     />
                 </Grid.Row>
                 <Grid.Row>
+                    <div
+                        style={{ width: '20px', margin: '10px', backgroundColor: '#0052CC', marginRight: '5px' }}
+                    ></div>
                     <Label
-                        style={{ width: '200px', textAlign: 'center', marginRight: '5px' }}
-                        color={'green'}
+                        style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white' }}
                         size={'big'}
                     >
                         Renewable Sources
@@ -241,17 +245,17 @@ class ComponentIndex extends Component {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Energy Type', '%'],
-                    ['Renewables', this.state.renewable],
                     ['Fossil Fuels', this.state.fossils],
-                    // ['Other', 0]
-                    // ['Solar', 10],
-                    // ['Natural Gas', 10],
-                    // ['Others', 20],
+                    ['Renewables', this.state.renewable],
                 ]}
                 options={{
                     title: 'Energy Sources',
                     // Just add this option
-                    is3D: true,
+                    // is3D: true,
+                    slices: {
+                        0: { color: '#00B1A4', offest: 0.2 },
+                        1: { color: '#0052CC' },
+                    },
                 }}
                 rootProps={{ 'data-testid': '2' }}
             />
@@ -316,23 +320,29 @@ class ComponentIndex extends Component {
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ['Blockchain', 'gCO2e/kWh'],
-                    ['Ethereum', this.state.ethGCO2e],
-                    ['RSK', this.state.rskGCO2e]
+                    [
+                        'Blockchain',
+                        'gCO2e/kWh',
+                        { role: 'style' },
+                        {
+                            sourceColumn: 0,
+                            role: 'annotation',
+                            type: 'string',
+                            calc: 'stringify',
+                        },
+                    ],
+                    ['Ethereum', this.state.ethGCO2e, '#f3b338', null],
+                    ['RSK', this.state.rskGCO2e, '#0C60C5', null],
                 ]}
                 options={{
-                    title: "Blockchain's Carbon Cost",
-                    chartArea: { width: '50%' },
-                    hAxis: {
-                        title: 'Total Consumption',
-                        minValue: 0,
-                    },
-                    vAxis: {
-                        title: 'Blockchain',
-                    },
+                    title: "Blockchain's Carbon Cost in gCO2e/kWh",
+                    width: 500,
+                    height: 250,
+                    bar: { groupWidth: '25%' },
+                    legend: { position: 'none' },
                 }}
                 // For tests
-                rootProps={{ 'data-testid': '1' }}
+                rootProps={{ 'data-testid': '6' }}
             />
         )
     }
