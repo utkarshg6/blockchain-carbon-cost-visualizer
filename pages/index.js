@@ -62,7 +62,75 @@ const energyOptions = [
 class ComponentIndex extends Component {
 
     state = {
-        txType: 'custom'
+        txType: 'custom',
+        ethHash: '',
+        rskHash: ''
+    }
+
+    fetchGetHash() {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "transactionType": "NFT Mint"
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://once-hackathon-api.herokuapp.com/get-hash", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                // this.setState({
+                //     ethHash: result.ethHash[0],
+                //     rskHash: result.rskHash[0]
+                // })
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    fetchCarbonIntensity() {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "energyMix": [
+                {
+                    "energyType": "Renewable",
+                    "percentage": 10
+                },
+                {
+                    "energyType": "Fossil",
+                    "percentage": 90
+                }
+            ],
+            "ethHash": "0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710",
+            "rskHash": "0x0bbaf7f86191c3c0461b5ee99508abcfc6c5067c3a82e43f8dcc2efd792cf070",
+            "transactionType": "NFT Mint"
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://once-hackathon-api.herokuapp.com/carbon-intesity", requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+    }
+
+    componentDidMount() {
+        this.fetchGetHash()
+        this.fetchCarbonIntensity()
     }
 
     renderEnergyPicker() {
@@ -120,14 +188,14 @@ class ComponentIndex extends Component {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Energy Type', '%'],
-                    ['Coal', 50],
-                    ['Hydro', 10],
-                    ['Solar', 10],
-                    ['Natural Gas', 10],
-                    ['Others', 20],
+                    ['Renewables', 20],
+                    ['Fossil Fuels', 80],
+                    // ['Solar', 10],
+                    // ['Natural Gas', 10],
+                    // ['Others', 20],
                 ]}
                 options={{
-                    title: 'Energy Consumption',
+                    title: 'Energy Sources',
                     // Just add this option
                     is3D: true,
                 }}
@@ -143,7 +211,7 @@ class ComponentIndex extends Component {
                     placeholder='Transaction Type'
                     selection
                     options={transactionOptions}
-                    style={{ marginRight: '200px', width: '300px' }}
+                    style={{ marginRight: '100px', width: '300px' }}
                     value={this.state.txType}
                     onChange={(e, { value }) => {
                         console.log('Tx Type State Changed to', value)
@@ -152,18 +220,22 @@ class ComponentIndex extends Component {
                 />
                 <Input
                     placeholder='Ethereum Transaction Hash...'
-                    style={{ marginRight: '25px', width: '300px' }}
+                    style={{ marginRight: '25px', width: '400px' }}
+                    value={this.state.ethHash}
                     onChange={(e, { value }) => {
                         console.log('ETH Tx Value Entered', value)
                         this.setState({ txType: 'custom' })
+                        this.setState({ ethHash: value })
                     }}
                 />
                 <Input
                     placeholder='RSK Transaction Hash...'
-                    style={{ width: '300px' }}
+                    style={{ width: '400px' }}
+                    value={this.state.rskHash}
                     onChange={(e, { value }) => {
                         console.log('RSK Tx Value Entered', value)
                         this.setState({ txType: 'custom' })
+                        this.setState({ rskHash: value })
                     }}
                 />
                 <Header as='h3'>Energy Mix</Header>

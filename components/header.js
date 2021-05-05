@@ -39,7 +39,6 @@ class MenuHeader extends Component {
                     active={activeWhatsThis}
                     onClickOutside={() => this.setState({ activeWhatsThis: false })}
                     page
-                    verticalAlign='middle'
                 >
                     <WhatsThisSection />
                 </Dimmer>
@@ -48,7 +47,6 @@ class MenuHeader extends Component {
                     active={activeAboutUs}
                     onClickOutside={() => this.setState({ activeAboutUs: false })}
                     page
-                    verticalAlign='middle'
                 >
                     <AboutUs />
                 </Dimmer>
