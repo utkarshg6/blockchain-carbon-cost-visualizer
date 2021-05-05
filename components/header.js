@@ -5,15 +5,17 @@ The Header file that will remain constant.
 import React, { Component } from 'react';
 import { Menu, Popup, Dimmer } from 'semantic-ui-react';
 
+import DisclaimerPopup from './disclaimer-popup';
+
 import WhatsThisSection from './whats-this-section';
 import AboutUs from './about-us-section';
-import DisclaimerPopup from './disclaimer-popup';
+import Disclaimer from './disclaimer';
 
 class MenuHeader extends Component {
     state = {}
 
     render() {
-        const { activeWhatsThis, activeAboutUs } = this.state
+        const { activeWhatsThis, activeAboutUs, activeDisclaimer } = this.state
 
         return (
             <>
@@ -51,7 +53,20 @@ class MenuHeader extends Component {
                 >
                     <AboutUs />
                 </Dimmer>
-                <DisclaimerPopup />
+                <Dimmer
+                    active={activeDisclaimer}
+                    onClickOutside={() => this.setState({ activeDisclaimer: false })}
+                    page
+                >
+                    <Disclaimer />
+                </Dimmer>
+
+                <div
+                    onClick={() => this.setState({ activeDisclaimer: true })}
+                >
+                    <DisclaimerPopup />
+                </div>
+
             </>
         )
     }

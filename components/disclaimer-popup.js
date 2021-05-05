@@ -22,7 +22,6 @@ class DisclaimerPopup extends Component {
                     padding: '0.5em 0.8em',
                 }
                 }
-            // onClick={}
             >
                 Disclaimer
             </div >
