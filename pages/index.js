@@ -51,11 +51,11 @@ const energyOptions = [
         text: '20% Fossil Fuels, 80% Renewable Energy',
         value: 'twenty-eighty'
     },
-    {
-        key: 'custom',
-        text: 'Custom',
-        value: 'custom'
-    },
+    // {
+    //     key: 'custom',
+    //     text: 'Custom',
+    //     value: 'custom'
+    // },
 ]
 
 
@@ -64,7 +64,10 @@ class ComponentIndex extends Component {
     state = {
         txType: 'custom',
         ethHash: '',
-        rskHash: ''
+        rskHash: '',
+        renewable: 28,
+        fossils: 72,
+        disableEnergyMixInput: true
     }
 
     fetchGetHash() {
@@ -143,6 +146,30 @@ class ComponentIndex extends Component {
                         options={energyOptions}
                         defaultValue={'world-average'}
                         style={{ width: '300px', marginRight: '25px' }}
+                        onChange={(e, { value }) => {
+                            console.log('Energy Mix Value Changed to', value)
+                            switch (value) {
+                                case 'world-average':
+                                    this.setState({ fossils: 72, renewable: 28, disableEnergyMixInput: true })
+                                    break;
+                                case 'eighty-twenty':
+                                    this.setState({ fossils: 80, renewable: 20, disableEnergyMixInput: true })
+                                    break;
+                                case 'fifty-fifty':
+                                    this.setState({ fossils: 50, renewable: 50, disableEnergyMixInput: true })
+                                    break;
+                                case 'twenty-eighty':
+                                    this.setState({ fossils: 20, renewable: 80, disableEnergyMixInput: true })
+                                    break;
+                                case 'custom':
+                                    this.setState({ disableEnergyMixInput: false })
+                                    break;
+                                default:
+                                    this.setState({ fossils: 20, renewable: 80 })
+                                    break;
+                                // code block
+                            }
+                        }}
                     />
                 </Grid.Row>
                 <Grid.Row>
@@ -158,6 +185,12 @@ class ComponentIndex extends Component {
                         labelPosition='right'
                         placeholder='100'
                         style={{ width: '75px' }}
+                        value={this.state.fossils}
+                        onChange={(e, { value }) => {
+                            console.log(value)
+                            this.setState({ fossils: value, renewable: 100 - value })
+                        }}
+                        disabled={this.state.disableEnergyMixInput}
                     />
                 </Grid.Row>
                 <Grid.Row>
@@ -173,6 +206,12 @@ class ComponentIndex extends Component {
                         labelPosition='right'
                         placeholder='100'
                         style={{ width: '75px' }}
+                        value={this.state.renewable}
+                        onChange={(e, { value }) => {
+                            console.log(value)
+                            this.setState({ fossils: 100 - value, renewable: value })
+                        }}
+                        disabled={this.state.disableEnergyMixInput}
                     />
                 </Grid.Row>
             </Grid>
@@ -188,8 +227,9 @@ class ComponentIndex extends Component {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Energy Type', '%'],
-                    ['Renewables', 20],
-                    ['Fossil Fuels', 80],
+                    ['Renewables', this.state.renewable],
+                    ['Fossil Fuels', this.state.fossils],
+                    // ['Other', 0]
                     // ['Solar', 10],
                     // ['Natural Gas', 10],
                     // ['Others', 20],
