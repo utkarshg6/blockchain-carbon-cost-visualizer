@@ -5,13 +5,13 @@ import Chart from "react-google-charts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faTree } from '@fortawesome/free-solid-svg-icons';
 
-import { Dropdown, Input, Header, Grid, Checkbox, Card, Label } from 'semantic-ui-react';
+import { Dropdown, Input, Header, Grid, Checkbox, Card, Label, Statistic } from 'semantic-ui-react';
 
 const transactionOptions = [
     {
-        key: 'custom',
-        text: 'Custom',
-        value: 'custom'
+        key: 'nft-deploy',
+        text: 'NFT Deploy',
+        value: 'nft-deploy'
     },
     {
         key: 'nft-mint',
@@ -19,14 +19,14 @@ const transactionOptions = [
         value: 'nft-mint'
     },
     {
-        key: 'nft-deploy',
-        text: 'NFT Deploy',
-        value: 'nft-deploy'
-    },
-    {
         key: 'nft-transfer',
         text: 'NFT Transfer',
         value: 'nft-transfer'
+    },
+    {
+        key: 'custom',
+        text: 'Custom',
+        value: 'custom'
     },
 ]
 
@@ -62,9 +62,9 @@ const energyOptions = [
 class ComponentIndex extends Component {
 
     state = {
-        txType: 'custom',
-        ethHash: '',
-        rskHash: '',
+        txType: '',
+        ethHash: '0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710',
+        // rskHash: '',
         renewable: 28,
         fossils: 72,
         disableEnergyMixInput: true,
@@ -269,14 +269,25 @@ class ComponentIndex extends Component {
                     placeholder='Transaction Type'
                     selection
                     options={transactionOptions}
-                    style={{ marginRight: '100px', width: '300px' }}
+                    style={{ display: 'grid', margin: 'auto', width: '200px' }}
                     value={this.state.txType}
                     onChange={(e, { value }) => {
                         console.log('Tx Type State Changed to', value)
                         this.setState({ txType: value })
                     }}
                 />
-                <Input
+                <Statistic
+                    style={{
+                        display: 'grid',
+                        margin: '15px auto'
+                    }}
+                    size={'mini'}
+                    color='teal'
+                >
+                    <Statistic.Value >{this.state.ethHash}</Statistic.Value>
+                    <Statistic.Label>ethereum transaction</Statistic.Label>
+                </Statistic>
+                {/* <Input
                     placeholder='Ethereum Transaction Hash...'
                     style={{ marginRight: '25px', width: '400px' }}
                     value={this.state.ethHash}
@@ -295,7 +306,7 @@ class ComponentIndex extends Component {
                         this.setState({ txType: 'custom' })
                         this.setState({ rskHash: value })
                     }}
-                />
+                /> */}
                 <Header as='h3'>Energy Mix</Header>
                 <Grid columns={2}>
                     <Grid.Row>
@@ -331,8 +342,9 @@ class ComponentIndex extends Component {
                             calc: 'stringify',
                         },
                     ],
-                    ['Ethereum', this.state.ethGCO2e, '#f3b338', null],
-                    ['RSK', this.state.rskGCO2e, '#0C60C5', null],
+                    ['NFT Deploy', this.state.ethGCO2e, '#f3b338', null],
+                    ['NFT Mint', this.state.rskGCO2e, '#0C60C5', null],
+                    ['NFT Transfer', this.state.rskGCO2e, '#00B1A4', null],
                 ]}
                 options={{
                     title: "Blockchain's Carbon Cost in gCO2e/kWh",
