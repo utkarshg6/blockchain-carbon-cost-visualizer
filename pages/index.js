@@ -5,7 +5,7 @@ import Chart from "react-google-charts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faTree } from '@fortawesome/free-solid-svg-icons';
 
-import { Dropdown, Input, Header, Grid, Checkbox, Card, Label, Statistic } from 'semantic-ui-react';
+import { Dropdown, Input, Header, Grid, Card, Label, Statistic } from 'semantic-ui-react';
 
 const transactionOptions = [
     {
@@ -23,80 +23,74 @@ const transactionOptions = [
         text: 'NFT Transfer',
         value: 'nft-transfer'
     },
-    {
-        key: 'custom',
-        text: 'Custom',
-        value: 'custom'
-    },
 ]
 
 const energyOptions = [
     {
-        key: 'world-average',
-        text: 'World Average',
-        value: 'world-average'
+        key: 'worldAverage',
+        text: 'World Average (2018) gC02e/kWh',
+        value: 'worldAverage'
     },
     {
-        key: 'eighty-twenty',
-        text: '80% Fossil Fuels, 20% Renewable Energy',
-        value: 'eighty-twenty'
+        key: 'fossil80Renewable20',
+        text: '80% Fossil and 20% Renewable (2018) gC02e/kWh',
+        value: 'fossil80Renewable20'
     },
     {
-        key: 'fifty-fifty',
-        text: '50% Fossil Fuels, 50% Renewable Energy',
-        value: 'fifty-fifty'
+        key: 'fossil50Renewable50',
+        text: '50% Fossil and 50% Renewable (2018) gC02e/kWh',
+        value: 'fossil50Renewable50'
     },
     {
-        key: 'twenty-eighty',
-        text: '20% Fossil Fuels, 80% Renewable Energy',
-        value: 'twenty-eighty'
+        key: 'fossil20Renewable80',
+        text: '20% Fossil and 80% Renewable (2018) gC02e/kWh',
+        value: 'fossil20Renewable80'
     },
-    // {
-    //     key: 'custom',
-    //     text: 'Custom',
-    //     value: 'custom'
-    // },
 ]
 
+const nftOptions = [
+    {
+        key: 'rare-nft',
+        text: 'Rare NFT',
+        value: 'rare-nft'
+    },
+    {
+        key: 'mypt-nft',
+        text: 'Mypt NFT',
+        value: 'mypt-nft'
+    },
+]
 
 class ComponentIndex extends Component {
 
     state = {
-        txType: '',
+        txType: 'nft-deploy',
+        // nftType: '',
         ethHash: '0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710',
         // rskHash: '',
         renewable: 28,
         fossils: 72,
         disableEnergyMixInput: true,
 
-        ethGCO2e: 14930.00,
-        rskGCO2e: 170.00
+        energyType: 'worldAverage',
+
+        deployGCO2e: 0,
+        mintGCO2e: 0,
+        transferGCO2e: 0,
     }
 
     fetchGetHash() {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
-            "transactionType": "NFT Mint"
-        });
+        var raw = "";
 
         var requestOptions = {
             method: 'POST',
-            headers: myHeaders,
             body: raw,
             redirect: 'follow'
         };
 
         fetch("https://once-hackathon-api.herokuapp.com/get-hash", requestOptions)
             .then(response => response.json())
-            .then(result => {
-                console.log(result)
-                // this.setState({
-                //     ethHash: result.ethHash[0],
-                //     rskHash: result.rskHash[0]
-                // })
-            })
+            .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
 
@@ -107,21 +101,9 @@ class ComponentIndex extends Component {
         myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
         var raw = JSON.stringify({
-            "energyMix": [
-                {
-                    "energyType": "Renewable",
-                    "percentage": this.state.renewable
-                    // "percentage": 1
-                },
-                {
-                    "energyType": "Fossil",
-                    "percentage": this.state.fossils
-                    // "percentage": 99
-                }
-            ],
-            "ethHash": "0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710",
-            "rskHash": "0x0bbaf7f86191c3c0461b5ee99508abcfc6c5067c3a82e43f8dcc2efd792cf070",
-            "transactionType": "NFT Mint"
+            "energyProfile": this.state.energyType,
+            "nftName": "Mypt NFT"
+            // "nftName": "Rare NFT"
         });
 
         var requestOptions = {
@@ -136,8 +118,9 @@ class ComponentIndex extends Component {
             .then(result => {
                 console.log(result)
                 this.setState({
-                    ethGCO2e: result.ethGCO2e,
-                    rskGCO2e: result.rskGCO2e
+                    deployGCO2e: parseFloat(result.deployGCO2e),
+                    mintGCO2e: parseFloat(result.mintGCO2e),
+                    transferGCO2e: parseFloat(result.transferGCO2e),
                 })
             })
             .catch(error => console.log('error', error));
@@ -157,21 +140,22 @@ class ComponentIndex extends Component {
                         placeholder='Energy Ratio'
                         selection
                         options={energyOptions}
-                        defaultValue={'world-average'}
-                        style={{ width: '300px', marginRight: '25px' }}
+                        defaultValue={'worldAverage'}
+                        style={{ width: '500px', marginRight: '25px' }}
                         onChange={(e, { value }) => {
                             console.log('Energy Mix Value Changed to', value)
+                            this.setState({ energyType: value })
                             switch (value) {
-                                case 'world-average':
+                                case 'worldAverage':
                                     this.setState({ fossils: 72, renewable: 28, disableEnergyMixInput: true })
                                     break;
-                                case 'eighty-twenty':
+                                case 'fossil80Renewable20':
                                     this.setState({ fossils: 80, renewable: 20, disableEnergyMixInput: true })
                                     break;
-                                case 'fifty-fifty':
+                                case 'fossil50Renewable50':
                                     this.setState({ fossils: 50, renewable: 50, disableEnergyMixInput: true })
                                     break;
-                                case 'twenty-eighty':
+                                case 'fossil20Renewable80':
                                     this.setState({ fossils: 20, renewable: 80, disableEnergyMixInput: true })
                                     break;
                                 case 'custom':
@@ -180,7 +164,6 @@ class ComponentIndex extends Component {
                                 default:
                                     this.setState({ fossils: 20, renewable: 80 })
                                     break;
-                                // code block
                             }
                             this.fetchCarbonIntensity()
                         }}
@@ -265,17 +248,33 @@ class ComponentIndex extends Component {
     renderFirstHalf() {
         return (
             <>
-                <Dropdown
-                    placeholder='Transaction Type'
-                    selection
-                    options={transactionOptions}
-                    style={{ display: 'grid', margin: 'auto', width: '200px' }}
-                    value={this.state.txType}
-                    onChange={(e, { value }) => {
-                        console.log('Tx Type State Changed to', value)
-                        this.setState({ txType: value })
-                    }}
-                />
+                <div
+                    style={{ display: 'flex', margin: 'auto', }}
+                >
+                    <Dropdown
+                        placeholder='Transaction Type'
+                        selection
+                        options={transactionOptions}
+                        style={{ marginLeft: '15px', marginRight: '25px', width: '200px' }}
+                        value={this.state.txType}
+                        onChange={(e, { value }) => {
+                            console.log('Tx Type State Changed to', value)
+                            this.setState({ txType: value })
+                        }}
+                    />
+                    <Dropdown
+                        placeholder='NFT Type'
+                        selection
+                        options={nftOptions}
+                        defaultValue={'mypt-nft'}
+                    // style={{ display: 'grid', margin: 'auto', width: '200px' }}
+                    // value={this.state.txType}
+                    // onChange={(e, { value }) => {
+                    //     console.log('Tx Type State Changed to', value)
+                    //     this.setState({ txType: value })
+                    // }}
+                    />
+                </div>
                 <Statistic
                     style={{
                         display: 'grid',
@@ -342,12 +341,12 @@ class ComponentIndex extends Component {
                             calc: 'stringify',
                         },
                     ],
-                    ['NFT Deploy', this.state.ethGCO2e, '#f3b338', null],
-                    ['NFT Mint', this.state.rskGCO2e, '#0C60C5', null],
-                    ['NFT Transfer', this.state.rskGCO2e, '#00B1A4', null],
+                    ['NFT Deploy', this.state.deployGCO2e, '#f3b338', null],
+                    ['NFT Mint', this.state.mintGCO2e, '#0C60C5', null],
+                    ['NFT Transfer', this.state.transferGCO2e, '#00B1A4', null],
                 ]}
                 options={{
-                    title: "Blockchain's Carbon Cost in gCO2e/kWh",
+                    title: "Carbon Cost Per Transaction",
                     width: 500,
                     height: 250,
                     bar: { groupWidth: '25%' },
