@@ -255,7 +255,7 @@ class ComponentIndex extends Component {
                         placeholder='Transaction Type'
                         selection
                         options={transactionOptions}
-                        style={{ marginLeft: '425px', marginRight: '25px', width: '200px' }}
+                        style={{ marginLeft: '15px', marginRight: '25px', width: '200px' }}
                         value={this.state.txType}
                         onChange={(e, { value }) => {
                             console.log('Tx Type State Changed to', value)
@@ -267,25 +267,27 @@ class ComponentIndex extends Component {
                         selection
                         options={nftOptions}
                         defaultValue={'mypt-nft'}
-                    // style={{ display: 'grid', margin: 'auto', width: '200px' }}
+                        style={{ marginRight: '25px' }}
                     // value={this.state.txType}
                     // onChange={(e, { value }) => {
                     //     console.log('Tx Type State Changed to', value)
                     //     this.setState({ txType: value })
                     // }}
                     />
+
+                    <Label
+                        style={{
+                            // backgroundColor: 'white',
+                            fontSize: '16px',
+                            color: 'black',
+                            border: '1px solid #808080',
+                            background: 'white'
+                        }}
+                    >
+                        {/* <strong>Tx Hash: </strong> */}
+                        {this.state.ethHash.slice(0, 25) + '...'}
+                    </Label>
                 </div>
-                <Statistic
-                    style={{
-                        display: 'grid',
-                        margin: '15px auto'
-                    }}
-                    size={'mini'}
-                    color='teal'
-                >
-                    <Statistic.Value >{this.state.ethHash}</Statistic.Value>
-                    <Statistic.Label>ethereum transaction</Statistic.Label>
-                </Statistic>
                 {/* <Input
                     placeholder='Ethereum Transaction Hash...'
                     style={{ marginRight: '25px', width: '400px' }}
