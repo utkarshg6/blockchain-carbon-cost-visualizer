@@ -65,7 +65,7 @@ class ComponentIndex extends Component {
 
     state = {
         txType: 'nft-deploy',
-        nftType: 'mypt-nft',
+        nftType: 'rare-nft',
         ethHash: '0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710',
         // rskHash: '',
         renewable: 28,
@@ -105,7 +105,7 @@ class ComponentIndex extends Component {
         var raw = JSON.stringify({
             "energyProfile": this.state.energyType,
             "nftName": nftName
-            // "nftName": "Rare NFT"
+            // "nftName": "Mypt NFT"
         });
 
         var requestOptions = {
@@ -196,7 +196,7 @@ class ComponentIndex extends Component {
                     >
                     </div>
                     {/* <Input
-                        label={{ basic: true, content: '%' }}
+                        label={{ basic: true, contentf: '%' }}
                         labelPosition='right'
                         placeholder='100'
                         style={{ width: '75px' }}
@@ -296,7 +296,6 @@ class ComponentIndex extends Component {
                         placeholder='NFT Type'
                         selection
                         options={nftOptions}
-                        defaultValue={'mypt-nft'}
                         style={{ marginRight: '25px' }}
                         value={this.state.nftType}
                         onChange={(e, { value }) => {
