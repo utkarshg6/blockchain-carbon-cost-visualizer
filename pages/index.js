@@ -5,7 +5,7 @@ import Chart from "react-google-charts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faTree } from '@fortawesome/free-solid-svg-icons';
 
-import { Dropdown, Input, Header, Grid, Card, Label, Statistic } from 'semantic-ui-react';
+import { Dropdown, Input, Header, Grid, Card, Label } from 'semantic-ui-react';
 
 const transactionOptions = [
     {
@@ -407,6 +407,33 @@ class ComponentIndex extends Component {
         )
     }
 
+    getGco2eValue() {
+        const { txType } = this.state
+
+        switch (txType) {
+            case 'nft-deploy':
+                return this.state.deployGCO2e
+            case 'nft-mint':
+                return this.state.mintGCO2e
+            case 'nft-transfer':
+                return this.state.transferGCO2e
+            default:
+                return 0
+        }
+    }
+
+    getCarPollutionValue() {
+        const factor = 0.1
+
+        return String(this.getGco2eValue() * factor)
+    }
+
+    getTreePollutionValue() {
+        const factor = 0.01
+
+        return String(this.getGco2eValue() * factor)
+    }
+
     renderSecondHalf() {
         return (
             <Grid columns={2}>
@@ -425,8 +452,8 @@ class ComponentIndex extends Component {
                                 />
                                 <Card.Content>
                                     <Card.Header>
-                                        178 miles
-                                </Card.Header>
+                                        {this.getCarPollutionValue() + ' miles'}
+                                    </Card.Header>
                                     <Card.Description>
                                         driven by a passenger car
                                 </Card.Description>
@@ -442,8 +469,8 @@ class ComponentIndex extends Component {
                                 />
                                 <Card.Content>
                                     <Card.Header>
-                                        23
-                                </Card.Header>
+                                        {this.getTreePollutionValue()}
+                                    </Card.Header>
                                     <Card.Description>
                                         fully grown trees
                                 </Card.Description>
