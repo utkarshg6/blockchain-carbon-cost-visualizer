@@ -10,7 +10,7 @@ class Footer extends Component {
         return (
             <Segment
                 style={{ position: 'fixed', bottom: '0', width: '100%', borderRadius: '0', textAlign: 'center' }}
-                // inverted
+            // inverted
             >
                 Copyright Reserved by the Blockchain Carbon Cost Visualizer. This software and code was released under the Apache 2 license.
             </Segment>

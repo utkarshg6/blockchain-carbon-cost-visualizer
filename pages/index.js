@@ -255,7 +255,7 @@ class ComponentIndex extends Component {
                         placeholder='Transaction Type'
                         selection
                         options={transactionOptions}
-                        style={{ marginLeft: '15px', marginRight: '25px', width: '200px' }}
+                        style={{ marginLeft: '425px', marginRight: '25px', width: '200px' }}
                         value={this.state.txType}
                         onChange={(e, { value }) => {
                             console.log('Tx Type State Changed to', value)
@@ -366,7 +366,9 @@ class ComponentIndex extends Component {
                         {this.renderBarChart()}
                     </Grid.Column>
                     <Grid.Column width={10}>
-                        <Card.Group>
+                        <Card.Group
+                            style={{ marginLeft: '100px' }}
+                        >
                             <Card>
                                 <FontAwesomeIcon
                                     style={{ color: '#3366CC', height: '100px', padding: '10px' }}
