@@ -33,7 +33,7 @@ class AboutUs extends Component {
                                 src='/img/Brendan.png'
                             />
                             <Card.Header>Brendan Graetz</Card.Header>
-                            <Card.Meta>Tech Lead at RSK</Card.Meta>
+                            <Card.Meta>Head of Developer Experience, IOV Labs</Card.Meta>
                         </Card.Content>
                     </Card>
 

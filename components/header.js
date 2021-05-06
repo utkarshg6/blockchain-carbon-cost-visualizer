@@ -3,7 +3,7 @@ The Header file that will remain constant.
 */
 
 import React, { Component } from 'react';
-import { Menu, Popup, Dimmer } from 'semantic-ui-react';
+import { Menu, Popup, Dimmer, Header } from 'semantic-ui-react';
 
 import DisclaimerPopup from './disclaimer-popup';
 
@@ -21,7 +21,9 @@ class MenuHeader extends Component {
             <>
                 <Menu style={{ height: "60px" }}>
                     <Menu.Item>
-                        Carbon Cost Explorer
+                        <Header as='h4'>
+                            Carbon Cost Explorer
+                                 </Header>
                     </Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item
