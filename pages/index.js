@@ -65,7 +65,7 @@ class ComponentIndex extends Component {
 
     state = {
         txType: 'nft-deploy',
-        // nftType: '',
+        nftType: 'mypt-nft',
         ethHash: '0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710',
         // rskHash: '',
         renewable: 28,
@@ -100,9 +100,11 @@ class ComponentIndex extends Component {
         myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
         myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
+        const nftName = (this.state.nftType == 'mypt-nft' ? 'Mypt NFT' : 'Rare NFT');
+
         var raw = JSON.stringify({
             "energyProfile": this.state.energyType,
-            "nftName": "Mypt NFT"
+            "nftName": nftName
             // "nftName": "Rare NFT"
         });
 
@@ -268,11 +270,12 @@ class ComponentIndex extends Component {
                         options={nftOptions}
                         defaultValue={'mypt-nft'}
                         style={{ marginRight: '25px' }}
-                    // value={this.state.txType}
-                    // onChange={(e, { value }) => {
-                    //     console.log('Tx Type State Changed to', value)
-                    //     this.setState({ txType: value })
-                    // }}
+                        value={this.state.nftType}
+                        onChange={(e, { value }) => {
+                            console.log('NFT Type State Changed to', value)
+                            this.setState({ nftType: value })
+                            this.fetchCarbonIntensity()
+                        }}
                     />
 
                     <Label
