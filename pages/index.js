@@ -94,13 +94,14 @@ class ComponentIndex extends Component {
             .catch(error => console.log('error', error));
     }
 
-    fetchCarbonIntensity() {
+    fetchCarbonIntensity(energy, nft) {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
         myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
-        const nftName = (this.state.nftType == 'mypt-nft' ? 'Mypt NFT' : 'Rare NFT');
+        const nftName = (nft == 'mypt-nft' ? 'Mypt NFT' : 'Rare NFT');
+        console.log('Send API For', energy, nftName)
 
         var raw = JSON.stringify({
             "energyProfile": this.state.energyType,
@@ -131,7 +132,7 @@ class ComponentIndex extends Component {
 
     componentDidMount() {
         this.fetchGetHash()
-        this.fetchCarbonIntensity()
+        this.fetchCarbonIntensity(this.state.energyType, this.state.nftType)
     }
 
     renderEnergyPicker() {
@@ -167,7 +168,7 @@ class ComponentIndex extends Component {
                                     this.setState({ fossils: 20, renewable: 80 })
                                     break;
                             }
-                            this.fetchCarbonIntensity()
+                            this.fetchCarbonIntensity(value, this.state.nftType)
                         }}
                     />
                 </Grid.Row>
@@ -301,7 +302,7 @@ class ComponentIndex extends Component {
                         onChange={(e, { value }) => {
                             console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
-                            this.fetchCarbonIntensity()
+                            this.fetchCarbonIntensity(this.state.energyType, value)
                         }}
                     />
 
