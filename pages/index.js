@@ -66,7 +66,10 @@ class ComponentIndex extends Component {
     state = {
         txType: 'nft-deploy',
         nftType: 'rare-nft',
-        ethHash: '0x112dc1cd0a6c50aae90bcb37f0377b510ede046dffb1e18cb32d33a6a4ab2710',
+
+        ethNFT: [],
+
+        ethHash: "0xb78615d79cf590588c055319f96617c842040db9",
         // rskHash: '',
         renewable: 28,
         fossils: 72,
@@ -90,8 +93,20 @@ class ComponentIndex extends Component {
 
         fetch("https://once-hackathon-api.herokuapp.com/get-hash", requestOptions)
             .then(response => response.json())
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result)
+                this.setState({ ethNFT: result.ethNFT })
+            })
             .catch(error => console.log('error', error));
+    }
+
+    changeNFTHash(nft) {
+        const { ethNFT } = this.state;
+        for (let item of ethNFT) {
+            if (item.name.replace(/\s+/g, '-').toLowerCase() == nft) {
+                this.setState({ ethHash: item.address })
+            }
+        }
     }
 
     fetchCarbonIntensity(energy, nft) {
@@ -303,6 +318,7 @@ class ComponentIndex extends Component {
                             console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
                             this.fetchCarbonIntensity(this.state.energyType, value)
+                            this.changeNFTHash(value)
                         }}
                     />
 
