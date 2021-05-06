@@ -176,12 +176,26 @@ class ComponentIndex extends Component {
                         style={{ width: '20px', margin: '10px', backgroundColor: '#00B1A4', marginRight: '5px' }}
                     ></div>
                     <Label
-                        style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white' }}
+                        style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white', color: 'black' }}
                         size={'big'}
                     >
                         Fossil Fuels
                     </Label>
-                    <Input
+                    <div
+                        style={{
+                            backgroundColor: '#0052CC',
+                            width: String(3 * this.state.fossils) + 'px'
+                        }}
+                    >
+                    </div>
+                    <div
+                        style={{
+                            backgroundColor: '#EFF2F7',
+                            width: String(300 - (3 * this.state.fossils)) + 'px'
+                        }}
+                    >
+                    </div>
+                    {/* <Input
                         label={{ basic: true, content: '%' }}
                         labelPosition='right'
                         placeholder='100'
@@ -192,19 +206,33 @@ class ComponentIndex extends Component {
                             this.setState({ fossils: value, renewable: 100 - value })
                         }}
                         disabled={this.state.disableEnergyMixInput}
-                    />
+                    /> */}
                 </Grid.Row>
                 <Grid.Row>
                     <div
                         style={{ width: '20px', margin: '10px', backgroundColor: '#0052CC', marginRight: '5px' }}
                     ></div>
                     <Label
-                        style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white' }}
+                        style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white', color: 'black' }}
                         size={'big'}
                     >
                         Renewable Sources
                     </Label>
-                    <Input
+                    <div
+                        style={{
+                            backgroundColor: '#0052CC',
+                            width: String(3 * this.state.renewable) + 'px'
+                        }}
+                    >
+                    </div>
+                    <div
+                        style={{
+                            backgroundColor: '#EFF2F7',
+                            width: String(300 - (3 * this.state.renewable)) + 'px'
+                        }}
+                    >
+                    </div>
+                    {/* <Input
                         label={{ basic: true, content: '%' }}
                         labelPosition='right'
                         placeholder='100'
@@ -215,7 +243,7 @@ class ComponentIndex extends Component {
                             this.setState({ fossils: 100 - value, renewable: value })
                         }}
                         disabled={this.state.disableEnergyMixInput}
-                    />
+                    /> */}
                 </Grid.Row>
             </Grid>
         )
