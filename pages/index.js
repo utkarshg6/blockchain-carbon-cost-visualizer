@@ -110,7 +110,7 @@ class ComponentIndex extends Component {
         }
     }
 
-    fetchCarbonIntensity(energy, nft) {
+    fetchCarbonCost(energy, nft) {
         this.setState({ loading: true })
 
         var myHeaders = new Headers();
@@ -122,7 +122,7 @@ class ComponentIndex extends Component {
         // console.log('Send API For', energy, nftName)
 
         var raw = JSON.stringify({
-            "energyProfile": this.state.energyType,
+            "energyProfile": energy,
             "nftName": nftName
             // "nftName": "Mypt NFT"
         });
@@ -134,7 +134,7 @@ class ComponentIndex extends Component {
             redirect: 'follow'
         };
 
-        fetch("https://once-hackathon-api.herokuapp.com/carbon-intesity", requestOptions)
+        fetch("https://once-hackathon-api.herokuapp.com/carbon-cost", requestOptions)
             .then(response => response.json())
             .then(result => {
                 // console.log(result)
@@ -151,7 +151,7 @@ class ComponentIndex extends Component {
 
     componentDidMount() {
         this.fetchGetHash()
-        this.fetchCarbonIntensity(this.state.energyType, this.state.nftType)
+        this.fetchCarbonCost(this.state.energyType, this.state.nftType)
     }
 
     renderEnergyPicker() {
@@ -187,7 +187,7 @@ class ComponentIndex extends Component {
                                     this.setState({ fossils: 20, renewable: 80 })
                                     break;
                             }
-                            this.fetchCarbonIntensity(value, this.state.nftType)
+                            this.fetchCarbonCost(value, this.state.nftType)
                         }}
                     />
                 </Grid.Row>
@@ -329,7 +329,7 @@ class ComponentIndex extends Component {
                         onChange={(e, { value }) => {
                             // console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
-                            this.fetchCarbonIntensity(this.state.energyType, value)
+                            this.fetchCarbonCost(this.state.energyType, value)
                             this.changeNFTHash(value)
                         }}
                     />
