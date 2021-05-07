@@ -59,6 +59,16 @@ const nftOptions = [
         text: 'Mypt NFT',
         value: 'mypt-nft'
     },
+    // {
+    //     key: 'gyro-nft',
+    //     text: 'Gyro NFT',
+    //     value: 'gyro-nft'
+    // },
+    // {
+    //     key: 'uniswap-v3',
+    //     text: 'Uniswap V3',
+    //     value: 'uniswap-v3'
+    // },
 ]
 
 class ComponentIndex extends Component {
@@ -70,17 +80,20 @@ class ComponentIndex extends Component {
         ethNFT: [],
 
         ethHash: "0xb78615d79cf590588c055319f96617c842040db9",
-        // rskHash: '',
-        renewable: 28,
-        fossils: 72,
-        disableEnergyMixInput: true,
 
         energyType: 'worldAverage',
 
         deployGCO2e: 0,
         mintGCO2e: 0,
         transferGCO2e: 0,
-        loading: true
+        loading: true,
+
+        fossils: 99,
+        renewable: 1,
+        coal: 72,
+        oil: 6,
+        gas: 21,
+
     }
 
     fetchGetHash() {
@@ -169,22 +182,58 @@ class ComponentIndex extends Component {
                             this.setState({ energyType: value })
                             switch (value) {
                                 case 'worldAverage':
-                                    this.setState({ fossils: 72, renewable: 28, disableEnergyMixInput: true })
+                                    this.setState({
+                                        coal: 72,
+                                        oil: 6,
+                                        gas: 21,
+                                        renewable: 1,
+                                        fossils: 99,
+                                    })
                                     break;
                                 case 'fossil80Renewable20':
-                                    this.setState({ fossils: 80, renewable: 20, disableEnergyMixInput: true })
+                                    this.setState({
+                                        coal: 57,
+                                        oil: 6,
+                                        gas: 17,
+                                        renewable: 20,
+                                        fossils: 80,
+                                    })
                                     break;
                                 case 'fossil50Renewable50':
-                                    this.setState({ fossils: 50, renewable: 50, disableEnergyMixInput: true })
+                                    this.setState({
+                                        coal: 36,
+                                        oil: 3,
+                                        gas: 11,
+                                        renewable: 50,
+                                        fossils: 50,
+                                    })
                                     break;
                                 case 'fossil20Renewable80':
-                                    this.setState({ fossils: 20, renewable: 80, disableEnergyMixInput: true })
+                                    this.setState({
+                                        coal: 15,
+                                        oil: 1,
+                                        gas: 4,
+                                        renewable: 80,
+                                        fossils: 20,
+                                    })
                                     break;
                                 case 'custom':
-                                    this.setState({ disableEnergyMixInput: false })
+                                    this.setState({
+                                        coal: 72,
+                                        oil: 6,
+                                        gas: 21,
+                                        renewable: 1,
+                                        fossils: 99,
+                                    })
                                     break;
                                 default:
-                                    this.setState({ fossils: 20, renewable: 80 })
+                                    this.setState({
+                                        coal: 72,
+                                        oil: 6,
+                                        gas: 21,
+                                        renewable: 1,
+                                        fossils: 99,
+                                    })
                                     break;
                             }
                             this.fetchCarbonCost(value, this.state.nftType)
@@ -278,7 +327,9 @@ class ComponentIndex extends Component {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Energy Type', '%'],
-                    ['Fossil Fuels', this.state.fossils],
+                    ['Coal', this.state.coal],
+                    ['Oil', this.state.oil],
+                    ['Gas', this.state.gas],
                     ['Renewables', this.state.renewable],
                 ]}
                 options={{
