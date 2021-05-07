@@ -543,51 +543,28 @@ class ComponentIndex extends Component {
     }
 
     renderCardsPlaceholder() {
+        const cardStyle = {
+            boxShadow: 'none',
+            backgroundColor: '#DFE2E8',
+            width: '300px'
+        }
         return (
             <Card.Group
                 style={{ marginLeft: '100px', marginTop: '30px' }}
             >
-                <Card>
-                    <Placeholder style={{ height: 100, width: 290 }}>
+                <Card
+                    style={cardStyle}
+                >
+                    <Placeholder style={{ height: 160, width: 300 }}>
                         <Placeholder.Image />
                     </Placeholder>
-                    <Card.Content>
-                        <Card.Header>
-                            <Placeholder>
-                                <Placeholder.Header>
-                                    <Placeholder.Line length='very short' />
-                                </Placeholder.Header>
-                            </Placeholder>
-                        </Card.Header>
-                        <Card.Description>
-                            <Placeholder>
-                                <Placeholder.Paragraph>
-                                    <Placeholder.Line length='short' />
-                                </Placeholder.Paragraph>
-                            </Placeholder>
-                        </Card.Description>
-                    </Card.Content>
                 </Card>
-                <Card>
-                    <Placeholder style={{ height: 100, width: 290 }}>
+                <Card
+                    style={cardStyle}
+                >
+                    <Placeholder style={{ height: 160, width: 300 }}>
                         <Placeholder.Image />
                     </Placeholder>
-                    <Card.Content>
-                        <Card.Header>
-                            <Placeholder>
-                                <Placeholder.Header>
-                                    <Placeholder.Line length='very short' />
-                                </Placeholder.Header>
-                            </Placeholder>
-                        </Card.Header>
-                        <Card.Description>
-                            <Placeholder>
-                                <Placeholder.Paragraph>
-                                    <Placeholder.Line length='short' />
-                                </Placeholder.Paragraph>
-                            </Placeholder>
-                        </Card.Description>
-                    </Card.Content>
                 </Card>
             </Card.Group>
         )
