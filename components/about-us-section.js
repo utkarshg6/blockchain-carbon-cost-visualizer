@@ -64,8 +64,9 @@ class AboutUs extends Component {
                             <Card.Header
                                 style={nameStyle}
                             >Brendan Graetz</Card.Header>
-                            <Card.Meta
-                            >Head of Developer Experience, IOV Labs</Card.Meta>
+                            <Card.Meta>
+                                Head of Developer Experience, RSK
+                            </Card.Meta>
                         </Card.Content>
                     </Card>
 
