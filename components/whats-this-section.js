@@ -77,7 +77,7 @@ class WhatsThisSection extends Component {
                     {' '}
                     <a
                         target="_blank"
-                        href="#"
+                        href="https://github.com/operation-nifty-carbon-emissions/nft-carbon-cost-visualizer/blob/main/operation-nifty-carbon-emissions.pdf"
                         rel="noopener noreferrer"
                     >
                         here
