@@ -489,7 +489,7 @@ class ComponentIndex extends Component {
     renderCards() {
         const cardStyle = {
             boxShadow: "none",
-            backgroundColor: "#DFE2E8",
+            backgroundColor: "#EFF2F7",
             width: "300px",
         };
 
