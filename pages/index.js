@@ -156,14 +156,14 @@ class ComponentIndex extends Component {
 
     renderEnergyPicker() {
         return (
-            <Grid style={{ marginLeft: '15px' }}>
+            <Grid style={{ marginLeft: '0px', marginTop: '25px' }}>
                 <Grid.Row>
                     <Dropdown
                         placeholder='Energy Ratio'
                         selection
                         options={energyOptions}
                         defaultValue={'worldAverage'}
-                        style={{ width: '542px', marginRight: '25px', marginTop: '30px' }}
+                        style={{ width: '642px' }}
                         onChange={(e, { value }) => {
                             // console.log('Energy Mix Value Changed to', value)
                             this.setState({ energyType: value })
@@ -204,14 +204,14 @@ class ComponentIndex extends Component {
                     <div
                         style={{
                             backgroundColor: '#0052CC',
-                            width: String(3 * this.state.fossils) + 'px'
+                            width: String(4 * this.state.fossils) + 'px'
                         }}
                     >
                     </div>
                     <div
                         style={{
                             backgroundColor: '#EFF2F7',
-                            width: String(300 - (3 * this.state.fossils)) + 'px'
+                            width: String(400 - (4 * this.state.fossils)) + 'px'
                         }}
                     >
                     </div>
@@ -241,14 +241,14 @@ class ComponentIndex extends Component {
                     <div
                         style={{
                             backgroundColor: '#0052CC',
-                            width: String(3 * this.state.renewable) + 'px'
+                            width: String(4 * this.state.renewable) + 'px'
                         }}
                     >
                     </div>
                     <div
                         style={{
                             backgroundColor: '#EFF2F7',
-                            width: String(300 - (3 * this.state.renewable)) + 'px'
+                            width: String(400 - (4 * this.state.renewable)) + 'px'
                         }}
                     >
                     </div>
@@ -272,10 +272,11 @@ class ComponentIndex extends Component {
     renderPieChart() {
         return (
             <Chart
+                style={{ marginLeft: '90px' }}
                 width={'500px'}
                 height={'300px'}
                 chartType="PieChart"
-                loader={<div>Loading Chart</div>}
+                loader={this.renderPieChartPlaceholder()}
                 data={[
                     ['Energy Type', '%'],
                     ['Fossil Fuels', this.state.fossils],
@@ -297,7 +298,7 @@ class ComponentIndex extends Component {
 
     renderPieChartPlaceholder() {
         return (
-            <Placeholder style={{ height: 300, width: 500 }}>
+            <Placeholder style={{ height: '300px', width: '500px', margin: 'auto' }}>
                 <Placeholder.Image />
             </Placeholder>
         )
@@ -307,7 +308,11 @@ class ComponentIndex extends Component {
         return (
             <>
                 <div
-                    style={{ display: 'flex', margin: 'auto', }}
+                    style={{
+                        display: 'flex',
+                        margin: 'auto',
+                        justifyContent: 'center'
+                    }}
                 >
                     <Dropdown
                         placeholder='Transaction Type'
@@ -391,10 +396,10 @@ class ComponentIndex extends Component {
     renderBarChart() {
         return (
             <Chart
-                width={'500px'}
+                width={'700px'}
                 height={'250px'}
                 chartType="BarChart"
-                loader={<div>Loading Chart</div>}
+                loader={this.renderBarChartPlaceholder()}
                 data={[
                     [
                         'Blockchain',
@@ -413,9 +418,9 @@ class ComponentIndex extends Component {
                 ]}
                 options={{
                     title: "Carbon Cost Per Transaction",
-                    width: 500,
+                    width: 700,
                     height: 250,
-                    bar: { groupWidth: '25%' },
+                    bar: { groupWidth: '50%' },
                     legend: { position: 'none' },
                 }}
                 // For tests
@@ -474,7 +479,7 @@ class ComponentIndex extends Component {
 
         return (
             <Card.Group
-                style={{ marginLeft: '100px', marginTop: '30px' }}
+                style={{ margin: 'auto', justifyContent: 'center' }}
             >
                 <Card
                     style={cardStyle}
@@ -536,7 +541,7 @@ class ComponentIndex extends Component {
 
     renderBarChartPlaceholder() {
         return (
-            <Placeholder style={{ height: 250, width: 1000 }}>
+            <Placeholder style={{ height: '250px', width: '1000px', margin: 'auto' }}>
                 <Placeholder.Image />
             </Placeholder>
         )
@@ -550,7 +555,7 @@ class ComponentIndex extends Component {
         }
         return (
             <Card.Group
-                style={{ marginLeft: '100px', marginTop: '30px' }}
+                style={{ margin: 'auto', justifyContent: 'center' }}
             >
                 <Card
                     style={cardStyle}
@@ -573,13 +578,15 @@ class ComponentIndex extends Component {
     renderSecondHalf() {
         return (
             <Grid columns={2}
-                style={{ marginBottom: '100px' }}
+            // style={{ marginBottom: '100px' }}
             >
                 <Grid.Row>
-                    <Grid.Column width={6}>
+                    <Grid.Column >
                         {this.state.loading ? this.renderBarChartPlaceholder() : this.renderBarChart()}
                     </Grid.Column>
-                    <Grid.Column width={10}>
+                    <Grid.Column
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
                         {this.state.loading ? this.renderCardsPlaceholder() : this.renderCards()}
                     </Grid.Column>
                 </Grid.Row>

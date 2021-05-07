@@ -14,8 +14,8 @@ const Layout = (props) => {
             <Header />
             <Container
                 style={{
-                width: '1500px',
-                padding: '30px 100px',
+                width: '100%',
+                padding: '60px 200px',
                 }}
             >
                 <Head>
