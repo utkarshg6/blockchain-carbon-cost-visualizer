@@ -8,18 +8,18 @@ class DisclaimerPopup extends Component {
                     top: '43%',
                     position: 'fixed',
                     color: 'white',
-                    left: '-74px',
-                    fontSize: 'x-large',
+                    right: '-42px',
+                    fontSize: '18px',
                     cursor: 'pointer',
                     maxWidth: '100%',
                     marginLeft: '20px',
-                    transform: 'rotate(-90deg)',
+                    transform: 'rotate(270deg)',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderRadius: '0 0 4px 4px',
+                    borderRadius: '4px',
                     backgroundColor: '#2A2498',
-                    padding: '0.5em 0.8em',
+                    padding: '0.8em 1.2em',
                 }
                 }
             >
