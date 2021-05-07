@@ -23,9 +23,7 @@ class MenuHeader extends Component {
                     height: "100px",
                     // borderBottom: '1px solid black',
                     marginTop: '-5px',
-                    boxShadow: '0 0 50px 0 rgba(76,147,230,0.1)',
-                    marginBottom: '0px'
-
+                    boxShadow: '0 0 50px 0 rgba(76,147,230,0.1)'
                 }}>
                     <Menu.Item>
                         <Header
