@@ -455,40 +455,80 @@ class ComponentIndex extends Component {
     }
 
     renderCards() {
+        const cardStyle = {
+            boxShadow: 'none',
+            backgroundColor: '#DFE2E8',
+            width: '300px'
+        }
+
+        const headerStyle = {
+            fontSize: '30px',
+            fontWeight: 'bold'
+        }
+
+        const contentStyle = {
+            fontSize: '14px',
+            marginTop: '14px',
+            color: '#929FB3'
+        }
+
         return (
             <Card.Group
                 style={{ marginLeft: '100px', marginTop: '30px' }}
             >
-                <Card>
-                    <FontAwesomeIcon
-                        style={{ color: '#3366CC', height: '100px', padding: '10px' }}
-                        icon={faCar}
-                    />
-                    <Card.Content>
-                        <Card.Header>
-                            {this.getCarPollutionValue() + ' miles'}
+                <Card
+                    style={cardStyle}
+                >
+                    <div
+                        style={{ padding: '20px' }}
+                    >
+                        <FontAwesomeIcon
+                            style={{
+                                color: '#3366CC',
+                                height: '65px',
+                                padding: '10px'
+                            }}
+                            icon={faCar}
+                        />
+                        <Card.Header
+                            style={headerStyle}
+                        >
+                            {this.getCarPollutionValue() + ' Miles'}
                         </Card.Header>
-                        <Card.Description>
-                            driven by a passenger car
-                                </Card.Description>
+                        <Card.Content
+                            style={contentStyle}
+                            extra
+                        >
+                            Driven by a Passenger Car
                     </Card.Content>
-                    {/* <Card.Content extra>
-                                Any Extra Information
-                            </Card.Content> */}
+                    </div>
                 </Card>
-                <Card>
-                    <FontAwesomeIcon
-                        style={{ color: '#109618', height: '100px', padding: '10px' }}
-                        icon={faTree}
-                    />
-                    <Card.Content>
-                        <Card.Header>
-                            {this.getTreePollutionValue()}
+                <Card
+                    style={cardStyle}
+                >
+                    <div
+                        style={{ padding: '20px' }}
+                    >
+                        <FontAwesomeIcon
+                            style={{
+                                color: '#00B1A4',
+                                height: '65px',
+                                padding: '10px'
+                            }}
+                            icon={faTree}
+                        />
+                        <Card.Header
+                            style={headerStyle}
+                        >
+                            {this.getTreePollutionValue() + ' Trees'}
                         </Card.Header>
-                        <Card.Description>
-                            fully grown trees
-                                </Card.Description>
+                        <Card.Content
+                            style={contentStyle}
+                            extra
+                        >
+                            Equivalent
                     </Card.Content>
+                    </div>
                 </Card>
             </Card.Group>
         )
