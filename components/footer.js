@@ -40,7 +40,7 @@ class Footer extends Component {
                             icon={faCopyright}
                         />
                         {' '} */}
-                        Copyright Reserved by O.N.C.E project team. This software and code is released under the GPL v3 license.
+                        &copy; Reserved by O.N.C.E project team. This software and code is released under the GPL v3 license.
                     </Header>
                 </Menu.Item>
             </Menu>
