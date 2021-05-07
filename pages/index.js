@@ -94,7 +94,7 @@ class ComponentIndex extends Component {
         fetch("https://once-hackathon-api.herokuapp.com/get-hash", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
+                // console.log(result)
                 this.setState({ ethNFT: result.ethNFT })
             })
             .catch(error => console.log('error', error));
@@ -116,7 +116,7 @@ class ComponentIndex extends Component {
         myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
         const nftName = (nft == 'mypt-nft' ? 'Mypt NFT' : 'Rare NFT');
-        console.log('Send API For', energy, nftName)
+        // console.log('Send API For', energy, nftName)
 
         var raw = JSON.stringify({
             "energyProfile": this.state.energyType,
@@ -134,7 +134,7 @@ class ComponentIndex extends Component {
         fetch("https://once-hackathon-api.herokuapp.com/carbon-intesity", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result)
+                // console.log(result)
                 this.setState({
                     deployGCO2e: parseFloat(result.deployGCO2e),
                     mintGCO2e: parseFloat(result.mintGCO2e),
@@ -161,7 +161,7 @@ class ComponentIndex extends Component {
                         defaultValue={'worldAverage'}
                         style={{ width: '500px', marginRight: '25px' }}
                         onChange={(e, { value }) => {
-                            console.log('Energy Mix Value Changed to', value)
+                            // console.log('Energy Mix Value Changed to', value)
                             this.setState({ energyType: value })
                             switch (value) {
                                 case 'worldAverage':
@@ -304,7 +304,7 @@ class ComponentIndex extends Component {
                         style={{ marginLeft: '15px', marginRight: '25px', width: '200px' }}
                         value={this.state.txType}
                         onChange={(e, { value }) => {
-                            console.log('Tx Type State Changed to', value)
+                            // console.log('Tx Type State Changed to', value)
                             this.setState({ txType: value })
                         }}
                     />
@@ -315,7 +315,7 @@ class ComponentIndex extends Component {
                         style={{ marginRight: '25px' }}
                         value={this.state.nftType}
                         onChange={(e, { value }) => {
-                            console.log('NFT Type State Changed to', value)
+                            // console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
                             this.fetchCarbonIntensity(this.state.energyType, value)
                             this.changeNFTHash(value)
