@@ -163,7 +163,7 @@ class ComponentIndex extends Component {
                         selection
                         options={energyOptions}
                         defaultValue={'worldAverage'}
-                        style={{ width: '500px', marginRight: '25px' }}
+                        style={{ width: '542px', marginRight: '25px', marginTop: '30px' }}
                         onChange={(e, { value }) => {
                             // console.log('Energy Mix Value Changed to', value)
                             this.setState({ energyType: value })
@@ -313,7 +313,7 @@ class ComponentIndex extends Component {
                         placeholder='Transaction Type'
                         selection
                         options={transactionOptions}
-                        style={{ marginLeft: '15px', marginRight: '25px', width: '200px' }}
+                        style={{ marginRight: '25px', width: '264px' }}
                         value={this.state.txType}
                         onChange={(e, { value }) => {
                             // console.log('Tx Type State Changed to', value)
@@ -324,7 +324,7 @@ class ComponentIndex extends Component {
                         placeholder='NFT Type'
                         selection
                         options={nftOptions}
-                        style={{ marginRight: '25px' }}
+                        style={{ marginRight: '25px', width: '264px' }}
                         value={this.state.nftType}
                         onChange={(e, { value }) => {
                             // console.log('NFT Type State Changed to', value)
@@ -367,7 +367,12 @@ class ComponentIndex extends Component {
                         this.setState({ rskHash: value })
                     }}
                 /> */}
-                <Header as='h3'>Energy Mix</Header>
+                <Header
+                    as='h3'
+                    style={{ marginBottom: '-20px' }}
+                >
+                    Energy Mix
+                </Header>
                 <Grid columns={2}>
                     <Grid.Row>
                         <Grid.Column>
@@ -393,7 +398,7 @@ class ComponentIndex extends Component {
                 data={[
                     [
                         'Blockchain',
-                        'Kg CO2e',
+                        'gCO2e',
                         { role: 'style' },
                         {
                             sourceColumn: 0,
@@ -452,7 +457,7 @@ class ComponentIndex extends Component {
     renderCards() {
         return (
             <Card.Group
-                style={{ marginLeft: '100px' }}
+                style={{ marginLeft: '100px', marginTop: '30px' }}
             >
                 <Card>
                     <FontAwesomeIcon
@@ -500,7 +505,7 @@ class ComponentIndex extends Component {
     renderCardsPlaceholder() {
         return (
             <Card.Group
-                style={{ marginLeft: '100px' }}
+                style={{ marginLeft: '100px', marginTop: '30px' }}
             >
                 <Card>
                     <Placeholder style={{ height: 100, width: 290 }}>
