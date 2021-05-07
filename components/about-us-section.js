@@ -28,7 +28,15 @@ class AboutUs extends Component {
                 >
                     This is a project submitted by the team O.N.C.E (Operation Nifty Carbon Emissions).
                      <br></br>
-                    This project is submitted under the Awareness track of the Green NFT Hackathon.
+                    This project is submitted under the Awareness track of the
+                    {' '}
+                    <a
+                        target="_blank"
+                        href="https://gitcoin.co/hackathon/green-nft/"
+                        rel="noopener noreferrer"
+                    >
+                        Green NFT Hackathon
+                    </a> .
                 </p>
 
                 <Header

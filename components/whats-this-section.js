@@ -23,8 +23,16 @@ class WhatsThisSection extends Component {
                 }}>
                     This is a project submitted by the team O.N.C.E (Operation Nifty Carbon Emissions).
                     <br></br>
-                    This project is submitted under the Awareness track of the Green NFT Hackathon.
-                        </p>
+                    This project is submitted under the Awareness track of the
+                    {' '}
+                    <a
+                        target="_blank"
+                        href="https://gitcoin.co/hackathon/green-nft/"
+                        rel="noopener noreferrer"
+                    >
+                        Green NFT Hackathon
+                    </a> .
+                </p>
 
                 <Header
                     style={{ fontSize: '20px' }}
@@ -63,9 +71,25 @@ class WhatsThisSection extends Component {
                 <p
                     style={{ fontSize: '16px' }}
                 >
-                    For more technical information on how we calculate the approximate carbon costs, please check out our light paper here.
+                    For more technical information on how we calculate the approximate carbon costs, please check out our light paper
+                    {' '}
+                    <a
+                        target="_blank"
+                        href="#"
+                        rel="noopener noreferrer"
+                    >
+                        here
+                    </a>.
                     <br></br>
-                    The code for this project is open sourced under the Apache 2 license. You can find the code on our Github here.
+                    The code for this project is open sourced under the Apache 2 license. You can find the code on our Github
+                    {' '}
+                    <a
+                        target="_blank"
+                        href="https://github.com/utkarshg6/blockchain-carbon-cost-visualizer"
+                        rel="noopener noreferrer"
+                    >
+                        here
+                    </a>.
                 </p>
 
             </Segment>
