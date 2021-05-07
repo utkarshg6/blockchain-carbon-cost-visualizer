@@ -497,10 +497,14 @@ class ComponentIndex extends Component {
                         </Card.Header>
                         <Card.Content
                             style={contentStyle}
-                            extra
                         >
                             Driven by a Passenger Car
                     </Card.Content>
+                        <Label
+                            style={{ backgroundColor: '#F3B338' }}
+                        >
+                            {this.state.txType}
+                        </Label>
                     </div>
                 </Card>
                 <Card
@@ -528,6 +532,11 @@ class ComponentIndex extends Component {
                         >
                             Equivalent
                     </Card.Content>
+                        <Label
+                            style={{ backgroundColor: '#F3B338' }}
+                        >
+                            {this.state.txType}
+                        </Label>
                     </div>
                 </Card>
             </Card.Group>
