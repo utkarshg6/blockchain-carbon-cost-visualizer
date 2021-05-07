@@ -412,10 +412,10 @@ class ComponentIndex extends Component {
                     ['NFT Transfer', this.state.transferGCO2e, '#00B1A4', null],
                 ]}
                 options={{
-                    title: "Carbon Cost Per Transaction",
+                    title: "Carbon Cost Per Transaction (gCO2e)",
                     width: 500,
                     height: 250,
-                    bar: { groupWidth: '25%' },
+                    bar: { groupWidth: '50%' },
                     legend: { position: 'none' },
                 }}
                 // For tests
@@ -440,7 +440,7 @@ class ComponentIndex extends Component {
     }
 
     getCarPollutionValue() {
-        const factor = 634
+        const factor = 397
         const pollutionValue = this.getGco2eValue() / factor
 
 

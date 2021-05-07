@@ -34,7 +34,7 @@ class MenuHeader extends Component {
                                 marginLeft: '80px'
                             }}
                         >
-                            Carbon Cost Explorer
+                            NFT Carbon Cost Explorer
                         </Header>
                     </Menu.Item>
                     <Menu.Menu position='right'>
