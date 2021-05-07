@@ -89,7 +89,7 @@ class WhatsThisSection extends Component {
                     {' '}
                     <a
                         target="_blank"
-                        href="https://github.com/utkarshg6/blockchain-carbon-cost-visualizer"
+                        href="https://github.com/operation-nifty-carbon-emissions/nft-carbon-cost-visualizer"
                         rel="noopener noreferrer"
                     >
                         here
