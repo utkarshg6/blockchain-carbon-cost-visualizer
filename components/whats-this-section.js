@@ -8,19 +8,20 @@ class WhatsThisSection extends Component {
             <Segment
                 style={{
                     width: '1000px',
-                    height: '580px',
+                    height: '600px',
                     color: 'black',
-                    padding: '50px'
+                    padding: '50px 86px',
+                    textAlign: 'justify',
                 }}
             >
                 <Header
-                    style={{ fontSize: '30px' }}
+                    style={{
+                        fontSize: '30px'
+                    }}
                     as='h2'>
                     Calculating Carbon Cost of Individual Blockchain Transactions
-                        </Header>
-                <p style={{
-                    fontSize: '16px'
-                }}>
+                </Header>
+                <p style={{ fontSize: '16px' }}>
                     This is a project submitted by the team O.N.C.E (Operation Nifty Carbon Emissions).
                     <br></br>
                     This project is submitted under the Awareness track of the
@@ -43,12 +44,13 @@ class WhatsThisSection extends Component {
 
                 <p style={{ fontSize: '16px' }}>
                     While there has been a lot of literature focusing on the carbon emissions and environmental impact of blockchain mining in general,
-                    there are very few projects which go to the level of detail where they try and find the impact behind every transaction.
-                    In this project, we try to do that! Moreover, we focus specifically on the impact of NFT transacations in particular.
+                    there are very few projects that go to the level of detail where they try to find the impact behind every transaction.
+                    In this project, we try to do that!
+                    Moreover, we focus specifically on the impact of NFT transactions in particular.
                     <br></br>
                     We have deployed a general Smart Contract, and we calculate the gas cost for three main types of transactions:
                     <br></br>
-                    Deploy, Mint and Transfer.
+                    <i>Deploy, Mint, and Transfer</i>.
                 </p>
 
 
@@ -71,7 +73,7 @@ class WhatsThisSection extends Component {
                 <p
                     style={{ fontSize: '16px' }}
                 >
-                    For more technical information on how we calculate the approximate carbon costs, please check out our light paper
+                    Please check out our light paper
                     {' '}
                     <a
                         target="_blank"
@@ -79,9 +81,11 @@ class WhatsThisSection extends Component {
                         rel="noopener noreferrer"
                     >
                         here
-                    </a>.
+                    </a>
+                    {' '}
+                    for more technical information on how we calculate the approximate carbon costs.
                     <br></br>
-                    The code for this project is open sourced under the Apache 2 license. You can find the code on our Github
+                    The code for this project is open-sourced under the GPL v3 license. You can find the code on our Github
                     {' '}
                     <a
                         target="_blank"
