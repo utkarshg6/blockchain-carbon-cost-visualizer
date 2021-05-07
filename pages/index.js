@@ -53,31 +53,25 @@ const nftOptions = [
     {
         key: 'mypt-nft',
         text: 'Mypt NFT',
-        value: 'mypt-nft'
+        value: 'Mypt NFT'
     },
     {
-        key: 'rare-nft',
-        text: 'Rare NFT',
-        value: 'rare-nft'
+        key: 'crypto-coins',
+        text: 'CryptoCoins',
+        value: 'CryptoCoins'
     },
-    // {
-    //     key: 'gyro-nft',
-    //     text: 'Gyro NFT',
-    //     value: 'gyro-nft'
-    // },
-    // {
-    //     key: 'uniswap-v3',
-    //     text: 'Uniswap V3',
-    //     value: 'uniswap-v3'
-    // },
+    {
+        key: 'k-compound',
+        text: 'KCompound',
+        value: 'KCompound'
+    },
 ]
 
 class ComponentIndex extends Component {
 
     state = {
         txType: 'nft-deploy',
-        nftType: 'mypt-nft',
-        nftTypeName: 'Mypt NFT',
+        nftType: 'Mypt NFT',
 
         ethNFT: [],
 
@@ -125,7 +119,7 @@ class ComponentIndex extends Component {
         }
     }
 
-    fetchCarbonCost(energy, nft) {
+    fetchCarbonCost(energy, nftName) {
         this.setState({ loading: true })
 
         var myHeaders = new Headers();
@@ -133,13 +127,11 @@ class ComponentIndex extends Component {
         myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
         myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
-        const nftName = (nft == 'mypt-nft' ? 'Mypt NFT' : 'Rare NFT');
-        // console.log('Send API For', energy, nftName)
+        console.log('Send API For', energy, nftName)
 
         var raw = JSON.stringify({
             "energyProfile": energy,
             "nftName": nftName
-            // "nftName": "Mypt NFT"
         });
 
         var requestOptions = {
@@ -381,11 +373,8 @@ class ComponentIndex extends Component {
                         onChange={(e, { value }) => {
                             // console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
-                            // switch (value) {
-                            //     case 'rare-'
-                            // }
                             this.fetchCarbonCost(this.state.energyType, value)
-                            this.changeNFTHash(value)
+                            // this.changeNFTHash(value)
                         }}
                     />
 
