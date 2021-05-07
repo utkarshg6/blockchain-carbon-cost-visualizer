@@ -439,7 +439,9 @@ class ComponentIndex extends Component {
 
     renderSecondHalf() {
         return (
-            <Grid columns={2}>
+            <Grid columns={2}
+                style={{ marginBottom: '100px' }}
+            >
                 <Grid.Row>
                     <Grid.Column width={6}>
                         {this.renderBarChart()}

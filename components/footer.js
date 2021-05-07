@@ -3,17 +3,37 @@ The Footer file that will remain constant.
 */
 
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Menu, Header } from 'semantic-ui-react';
 
 class Footer extends Component {
     render() {
         return (
-            <Segment
-                style={{ position: 'fixed', bottom: '0', width: '100%', borderRadius: '0', textAlign: 'center' }}
+            <Menu
+                text
+                style={{
+                    position: 'fixed', bottom: '0', width: '100%', borderRadius: '0', textAlign: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 0 50px 0 rgba(76,147,230,0.1)',
+                    fontSize: '16px',
+                    zIndex: '1',
+                    backgroundColor: 'white',
+                    marginBottom: '0px',
+                    height: '60px'
+                }}
             // inverted
             >
-                Copyright Reserved by the Blockchain Carbon Cost Visualizer. This software and code was released under the Apache 2 license.
-            </Segment>
+                <Menu.Item>
+                    <Header
+                        style={{
+                            fontSize: '16px',
+                            lineHeight: '20px',
+                            marginLeft: '80px'
+                        }}
+                    >
+                        Copyright Reserved by the Blockchain Carbon Cost Visualizer. This software and code was released under the Apache 2 license.
+                    </Header>
+                </Menu.Item>
+            </Menu>
         )
     }
 }
