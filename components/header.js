@@ -19,20 +19,34 @@ class MenuHeader extends Component {
 
         return (
             <>
-                <Menu style={{ height: "60px" }}>
+                <Menu text style={{
+                    height: "100px",
+                    // borderBottom: '1px solid black',
+                    marginTop: '-5px',
+                    boxShadow: '0 0 50px 0 rgba(76,147,230,0.1)'
+                }}>
                     <Menu.Item>
-                        <Header as='h4'>
+                        <Header
+                            as='h4'
+                            style={{
+                                fontSize: '30px',
+                                lineHeight: '20px',
+                                marginLeft: '80px'
+                            }}
+                        >
                             Carbon Cost Explorer
-                                 </Header>
+                        </Header>
                     </Menu.Item>
                     <Menu.Menu position='right'>
                         <Menu.Item
+                            style={{ fontSize: '16px', marginRight: '45px' }}
                             onClick={() => this.setState({ activeWhatsThis: true })}
                         >
                             What's this?
                         </Menu.Item>
 
                         <Menu.Item
+                            style={{ fontSize: '16px', marginRight: '80px' }}
                             onClick={() => this.setState({ activeAboutUs: true })}
                         >
                             About Us
