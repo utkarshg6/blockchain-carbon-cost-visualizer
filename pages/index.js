@@ -424,14 +424,17 @@ class ComponentIndex extends Component {
 
     getCarPollutionValue() {
         const factor = 0.1
+        const pollutionValue = this.getGco2eValue() * factor
 
-        return String(this.getGco2eValue() * factor)
+
+        return String(pollutionValue.toFixed(2))
     }
 
     getTreePollutionValue() {
         const factor = 0.01
+        const pollutionValue = this.getGco2eValue() * factor
 
-        return String(this.getGco2eValue() * factor)
+        return String(pollutionValue.toFixed(2))
     }
 
     renderSecondHalf() {
