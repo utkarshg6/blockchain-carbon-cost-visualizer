@@ -11,17 +11,17 @@ const transactionOptions = [
     {
         key: "nft-deploy",
         text: "NFT Deploy",
-        value: "nft-deploy",
+        value: "NFT Deploy",
     },
     {
         key: "nft-mint",
         text: "NFT Mint",
-        value: "nft-mint",
+        value: "NFT Mint",
     },
     {
         key: "nft-transfer",
         text: "NFT Transfer",
-        value: "nft-transfer",
+        value: "NFT Transfer",
     },
 ];
 
@@ -68,7 +68,7 @@ const nftOptions = [
 
 class ComponentIndex extends Component {
     state = {
-        txType: "nft-deploy",
+        txType: "NFT Deploy",
         nftType: "Mypt NFT",
 
         ethNFT: [],
@@ -461,11 +461,11 @@ class ComponentIndex extends Component {
         const { txType } = this.state;
 
         switch (txType) {
-            case "nft-deploy":
+            case "NFT Deploy":
                 return this.state.deployGCO2e;
-            case "nft-mint":
+            case "NFT Mint":
                 return this.state.mintGCO2e;
-            case "nft-transfer":
+            case "NFT Transfer":
                 return this.state.transferGCO2e;
             default:
                 return 0;
@@ -505,7 +505,8 @@ class ComponentIndex extends Component {
         };
 
         const labelStyle = {
-            backgroundColor: "#F3B338",
+            textAlign: 'center',
+            width: '100px',
             marginTop: "10px",
         };
 
@@ -523,7 +524,7 @@ class ComponentIndex extends Component {
                         />
                         <Card.Header style={headerStyle}>{this.getCarPollutionValue() + " Miles"}</Card.Header>
                         <Card.Content style={contentStyle}>Driven by a Passenger Car</Card.Content>
-                        <Label style={labelStyle}>{this.state.txType}</Label>
+                        <Label color='black' style={labelStyle}>{this.state.txType}</Label>
                     </div>
                 </Card>
                 <Card style={cardStyle}>
@@ -540,7 +541,7 @@ class ComponentIndex extends Component {
                         <Card.Content style={contentStyle} extra>
                             Equivalent
 						</Card.Content>
-                        <Label style={labelStyle}>{this.state.txType}</Label>
+                        <Label color='black' style={labelStyle}>{this.state.txType}</Label>
                     </div>
                 </Card>
             </Card.Group>
