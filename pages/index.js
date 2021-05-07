@@ -113,7 +113,7 @@ class ComponentIndex extends Component {
     changeNFTHash(nft) {
         const { ethNFT } = this.state;
         for (let item of ethNFT) {
-            if (item.name.replace(/\s+/g, '-').toLowerCase() == nft) {
+            if (item.name == nft) {
                 this.setState({ ethHash: item.address })
             }
         }
@@ -374,7 +374,7 @@ class ComponentIndex extends Component {
                             // console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
                             this.fetchCarbonCost(this.state.energyType, value)
-                            // this.changeNFTHash(value)
+                            this.changeNFTHash(value)
                         }}
                     />
 
