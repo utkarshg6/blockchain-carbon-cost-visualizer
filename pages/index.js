@@ -5,7 +5,7 @@ import Chart from "react-google-charts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faTree } from '@fortawesome/free-solid-svg-icons';
 
-import { Dropdown, Input, Header, Grid, Card, Label } from 'semantic-ui-react';
+import { Dropdown, Input, Header, Grid, Card, Label, Placeholder } from 'semantic-ui-react';
 
 const transactionOptions = [
     {
@@ -80,6 +80,7 @@ class ComponentIndex extends Component {
         deployGCO2e: 0,
         mintGCO2e: 0,
         transferGCO2e: 0,
+        loading: true
     }
 
     fetchGetHash() {
@@ -110,6 +111,8 @@ class ComponentIndex extends Component {
     }
 
     fetchCarbonIntensity(energy, nft) {
+        this.setState({ loading: true })
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -139,6 +142,7 @@ class ComponentIndex extends Component {
                     deployGCO2e: parseFloat(result.deployGCO2e),
                     mintGCO2e: parseFloat(result.mintGCO2e),
                     transferGCO2e: parseFloat(result.transferGCO2e),
+                    loading: false
                 })
             })
             .catch(error => console.log('error', error));
@@ -291,6 +295,14 @@ class ComponentIndex extends Component {
         )
     }
 
+    renderPieChartPlaceholder() {
+        return (
+            <Placeholder style={{ height: 300, width: 500 }}>
+                <Placeholder.Image />
+            </Placeholder>
+        )
+    }
+
     renderFirstHalf() {
         return (
             <>
@@ -362,7 +374,7 @@ class ComponentIndex extends Component {
                             {this.renderEnergyPicker()}
                         </Grid.Column>
                         <Grid.Column>
-                            {this.renderPieChart()}
+                            {this.state.loading ? this.renderPieChartPlaceholder() : this.renderPieChart()}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -381,7 +393,7 @@ class ComponentIndex extends Component {
                 data={[
                     [
                         'Blockchain',
-                        'gCO2e/kWh',
+                        'Kg CO2e',
                         { role: 'style' },
                         {
                             sourceColumn: 0,
@@ -423,18 +435,117 @@ class ComponentIndex extends Component {
     }
 
     getCarPollutionValue() {
-        const factor = 0.1
-        const pollutionValue = this.getGco2eValue() * factor
+        const factor = 634
+        const pollutionValue = this.getGco2eValue() / factor
 
 
         return String(pollutionValue.toFixed(2))
     }
 
     getTreePollutionValue() {
-        const factor = 0.01
-        const pollutionValue = this.getGco2eValue() * factor
+        const factor = 22000
+        const pollutionValue = this.getGco2eValue() / factor
 
         return String(pollutionValue.toFixed(2))
+    }
+
+    renderCards() {
+        return (
+            <Card.Group
+                style={{ marginLeft: '100px' }}
+            >
+                <Card>
+                    <FontAwesomeIcon
+                        style={{ color: '#3366CC', height: '100px', padding: '10px' }}
+                        icon={faCar}
+                    />
+                    <Card.Content>
+                        <Card.Header>
+                            {this.getCarPollutionValue() + ' miles'}
+                        </Card.Header>
+                        <Card.Description>
+                            driven by a passenger car
+                                </Card.Description>
+                    </Card.Content>
+                    {/* <Card.Content extra>
+                                Any Extra Information
+                            </Card.Content> */}
+                </Card>
+                <Card>
+                    <FontAwesomeIcon
+                        style={{ color: '#109618', height: '100px', padding: '10px' }}
+                        icon={faTree}
+                    />
+                    <Card.Content>
+                        <Card.Header>
+                            {this.getTreePollutionValue()}
+                        </Card.Header>
+                        <Card.Description>
+                            fully grown trees
+                                </Card.Description>
+                    </Card.Content>
+                </Card>
+            </Card.Group>
+        )
+    }
+
+    renderBarChartPlaceholder() {
+        return (
+            <Placeholder style={{ height: 250, width: 1000 }}>
+                <Placeholder.Image />
+            </Placeholder>
+        )
+    }
+
+    renderCardsPlaceholder() {
+        return (
+            <Card.Group
+                style={{ marginLeft: '100px' }}
+            >
+                <Card>
+                    <Placeholder style={{ height: 100, width: 290 }}>
+                        <Placeholder.Image />
+                    </Placeholder>
+                    <Card.Content>
+                        <Card.Header>
+                            <Placeholder>
+                                <Placeholder.Header>
+                                    <Placeholder.Line length='very short' />
+                                </Placeholder.Header>
+                            </Placeholder>
+                        </Card.Header>
+                        <Card.Description>
+                            <Placeholder>
+                                <Placeholder.Paragraph>
+                                    <Placeholder.Line length='short' />
+                                </Placeholder.Paragraph>
+                            </Placeholder>
+                        </Card.Description>
+                    </Card.Content>
+                </Card>
+                <Card>
+                    <Placeholder style={{ height: 100, width: 290 }}>
+                        <Placeholder.Image />
+                    </Placeholder>
+                    <Card.Content>
+                        <Card.Header>
+                            <Placeholder>
+                                <Placeholder.Header>
+                                    <Placeholder.Line length='very short' />
+                                </Placeholder.Header>
+                            </Placeholder>
+                        </Card.Header>
+                        <Card.Description>
+                            <Placeholder>
+                                <Placeholder.Paragraph>
+                                    <Placeholder.Line length='short' />
+                                </Placeholder.Paragraph>
+                            </Placeholder>
+                        </Card.Description>
+                    </Card.Content>
+                </Card>
+            </Card.Group>
+        )
     }
 
     renderSecondHalf() {
@@ -444,44 +555,10 @@ class ComponentIndex extends Component {
             >
                 <Grid.Row>
                     <Grid.Column width={6}>
-                        {this.renderBarChart()}
+                        {this.state.loading ? this.renderBarChartPlaceholder() : this.renderBarChart()}
                     </Grid.Column>
                     <Grid.Column width={10}>
-                        <Card.Group
-                            style={{ marginLeft: '100px' }}
-                        >
-                            <Card>
-                                <FontAwesomeIcon
-                                    style={{ color: '#3366CC', height: '100px', padding: '10px' }}
-                                    icon={faCar}
-                                />
-                                <Card.Content>
-                                    <Card.Header>
-                                        {this.getCarPollutionValue() + ' miles'}
-                                    </Card.Header>
-                                    <Card.Description>
-                                        driven by a passenger car
-                                </Card.Description>
-                                </Card.Content>
-                                {/* <Card.Content extra>
-                                Any Extra Information
-                            </Card.Content> */}
-                            </Card>
-                            <Card>
-                                <FontAwesomeIcon
-                                    style={{ color: '#109618', height: '100px', padding: '10px' }}
-                                    icon={faTree}
-                                />
-                                <Card.Content>
-                                    <Card.Header>
-                                        {this.getTreePollutionValue()}
-                                    </Card.Header>
-                                    <Card.Description>
-                                        fully grown trees
-                                </Card.Description>
-                                </Card.Content>
-                            </Card>
-                        </Card.Group>
+                        {this.state.loading ? this.renderCardsPlaceholder() : this.renderCards()}
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
