@@ -49,15 +49,16 @@ const energyOptions = [
 ]
 
 const nftOptions = [
-    {
-        key: 'rare-nft',
-        text: 'Rare NFT',
-        value: 'rare-nft'
-    },
+
     {
         key: 'mypt-nft',
         text: 'Mypt NFT',
         value: 'mypt-nft'
+    },
+    {
+        key: 'rare-nft',
+        text: 'Rare NFT',
+        value: 'rare-nft'
     },
     // {
     //     key: 'gyro-nft',
@@ -75,7 +76,8 @@ class ComponentIndex extends Component {
 
     state = {
         txType: 'nft-deploy',
-        nftType: 'rare-nft',
+        nftType: 'mypt-nft',
+        nftTypeName: 'Mypt NFT',
 
         ethNFT: [],
 
@@ -108,7 +110,7 @@ class ComponentIndex extends Component {
         fetch("https://once-hackathon-api.herokuapp.com/get-hash", requestOptions)
             .then(response => response.json())
             .then(result => {
-                // console.log(result)
+                console.log(result)
                 this.setState({ ethNFT: result.ethNFT })
             })
             .catch(error => console.log('error', error));
@@ -379,6 +381,9 @@ class ComponentIndex extends Component {
                         onChange={(e, { value }) => {
                             // console.log('NFT Type State Changed to', value)
                             this.setState({ nftType: value })
+                            // switch (value) {
+                            //     case 'rare-'
+                            // }
                             this.fetchCarbonCost(this.state.energyType, value)
                             this.changeNFTHash(value)
                         }}
@@ -522,6 +527,11 @@ class ComponentIndex extends Component {
             color: '#929FB3'
         }
 
+        const labelStyle = {
+            backgroundColor: '#F3B338',
+            marginTop: '10px'
+        }
+
         return (
             <Card.Group
                 style={{ marginLeft: '100px', marginTop: '30px' }}
@@ -551,7 +561,7 @@ class ComponentIndex extends Component {
                             Driven by a Passenger Car
                     </Card.Content>
                         <Label
-                            style={{ backgroundColor: '#F3B338' }}
+                            style={labelStyle}
                         >
                             {this.state.txType}
                         </Label>
@@ -583,7 +593,7 @@ class ComponentIndex extends Component {
                             Equivalent
                     </Card.Content>
                         <Label
-                            style={{ backgroundColor: '#F3B338' }}
+                            style={labelStyle}
                         >
                             {this.state.txType}
                         </Label>

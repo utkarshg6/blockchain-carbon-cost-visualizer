@@ -5,6 +5,9 @@ The Footer file that will remain constant.
 import React, { Component } from 'react';
 import { Menu, Header } from 'semantic-ui-react';
 
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCopyright } from '@fortawesome/free-solid-svg-icons';
+
 class Footer extends Component {
     render() {
         return (
@@ -30,7 +33,14 @@ class Footer extends Component {
                             marginLeft: '80px'
                         }}
                     >
-                        Copyright Reserved by the Blockchain Carbon Cost Visualizer. This software and code was released under the Apache 2 license.
+                        {/* <FontAwesomeIcon
+                            style={{
+                                height: '14px'
+                            }}
+                            icon={faCopyright}
+                        />
+                        {' '} */}
+                        Copyright Reserved by O.N.C.E project team. This software and code is released under the GPL v3 license.
                     </Header>
                 </Menu.Item>
             </Menu>
