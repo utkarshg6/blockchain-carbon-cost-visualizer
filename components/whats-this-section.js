@@ -8,7 +8,7 @@ class WhatsThisSection extends Component {
             <Segment
                 style={{
                     width: '1000px',
-                    height: '600px',
+                    height: '615px',
                     color: 'black',
                     padding: '50px 86px',
                     textAlign: 'justify',
