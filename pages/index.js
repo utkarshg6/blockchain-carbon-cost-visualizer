@@ -242,7 +242,7 @@ class ComponentIndex extends Component {
                 </Grid.Row>
                 <Grid.Row>
                     <div
-                        style={{ width: '20px', margin: '10px', backgroundColor: '#00B1A4', marginRight: '5px' }}
+                        style={{ width: '20px', margin: '10px', backgroundColor: '#0052CC', marginRight: '5px' }}
                     ></div>
                     <Label
                         style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white', color: 'black' }}
@@ -279,7 +279,7 @@ class ComponentIndex extends Component {
                 </Grid.Row>
                 <Grid.Row>
                     <div
-                        style={{ width: '20px', margin: '10px', backgroundColor: '#0052CC', marginRight: '5px' }}
+                        style={{ width: '20px', margin: '10px', backgroundColor: '#00B1A4', marginRight: '5px' }}
                     ></div>
                     <Label
                         style={{ width: '200px', textAlign: 'left', marginRight: '5px', backgroundColor: 'white', color: 'black' }}
@@ -337,8 +337,7 @@ class ComponentIndex extends Component {
                     // Just add this option
                     // is3D: true,
                     slices: {
-                        0: { color: '#00B1A4', offest: 0.2 },
-                        1: { color: '#0052CC' },
+                        3: { color: '#00B1A4' },
                     },
                 }}
                 rootProps={{ 'data-testid': '2' }}
